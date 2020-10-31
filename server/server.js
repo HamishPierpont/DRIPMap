@@ -6,7 +6,8 @@ const path = require('path'),
     exampleRouter = require('./routes/routes');
 
 mongoose.connect(process.env.DB_URI || require('./config').db.uri, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 });
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
