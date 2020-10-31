@@ -1,13 +1,9 @@
-import mongoose from "mongoose"
+const mongoose = require('mongoose');
 
-const formDataModel = new mongoose.schema({
+const formDataModel = new mongoose.Schema({
     title: { type: String, required: true},
     description: { type: String},
     typeOfDisaster: { type: String, required: true },
-    image:
-    {
-        data: Buffer, required: true
-    }
 });
 
-export default mongoose.model('formDataModel', formDataModel)
+module.export = mongoose.model('formDataModel', formDataModel);

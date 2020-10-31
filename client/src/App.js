@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home";
-import Data from "./views/Data/Data";
 import Resources from "./views/Resources/Resources";
 import Profile from "./views/Profile/Profile";
 import Settings from "./views/Settings/Settings";
@@ -17,7 +16,6 @@ const App = () => {
         <Route exact path="/">
           <Redirect to="/Home" />
         </Route>
-        <Route exact path="/Data" component={Data} />
         <Route exact path="/Resources" component={Resources} />
         <Route exact path="/Profile" component={Profile} />
         <Route exact path="/Settings" component={Settings} />
