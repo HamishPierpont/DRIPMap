@@ -5,7 +5,7 @@ import Resources from "./views/Resources/Resources";
 import Profile from "./views/Profile/Profile";
 import Settings from "./views/Settings/Settings";
 import NotFound from "./views/NotFound";
-import NavBar from "./components/Header/NavBar";
+import NavBar from "./components/NavBar";
 
 const App = () => {
   return (
