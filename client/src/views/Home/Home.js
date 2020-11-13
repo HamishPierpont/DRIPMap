@@ -3,13 +3,15 @@ import { Map, GoogleApiWrapper } from 'google-maps-react';
 import TwitterContainer from '../../components/TwitterContainer';
 
 const mapStyles = {
-  width: '83%',
-  height: '100%',
+  width: '81vw',
+  height: '100vh',
 };
 
 const twitterStyle = {
   float: 'right',
   overflowY: 'scroll',
+  width: '18vw',
+  height: '100vh'
 };
 
 export class MapContainer extends Component {
