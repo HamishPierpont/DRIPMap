@@ -1,4 +1,4 @@
-const examples = require('../controllers/controller.js'),
+const examples = require('../controllers/controller'),
     express = require('express'), 
     router = express.Router()
 

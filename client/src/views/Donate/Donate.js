@@ -1,8 +1,7 @@
 import React from 'react';
-import logo from '../../assets/logo.svg';
-import './Settings.css';
+import './Donate.css';
 
-function Settings() {
+function Donate() {
     return (
         <div className="App">
             <header className="App-header">
@@ -11,4 +10,4 @@ function Settings() {
     );
 }
 
-export default Settings;
+export default Donate;
