@@ -4,6 +4,7 @@ mongoose = require('mongoose'),
 morgan = require('morgan'),
 bodyParser = require('body-parser'),
 exampleRouter = require('./routes/routes');
+authRouter = require('./routes/auth');
 
 mongoose.connect(process.env.DB_URI || require('./config/config').db.uri, {
     useNewUrlParser: true,
@@ -12,19 +13,22 @@ mongoose.connect(process.env.DB_URI || require('./config/config').db.uri, {
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 
-// initialize app
+// Initialize app
 const app = express();
 
-// enable request logging for development debugging
+// Enable request logging for development debugging
 app.use(morgan('dev'));
 
-// body parsing middleware
+// Body parsing middleware
 app.use(bodyParser.json());
 
-// add a router
+// Add a router TODO: the api shouldn't actually be 'api/example'
 app.use('/api/example', exampleRouter);
 
-// Serve any static files
+// Router for authentication
+app.use('/api/user', authRouter);
+
+// Serve any static files TODO: separate prod & dev environments
 app.use(express.static(path.join(__dirname, '../../client/build')));
 
 // Handle React routing, return all requests to React app
