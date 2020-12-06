@@ -4,6 +4,8 @@ import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home";
 import Resources from "./views/Resources/Resources";
 import Profile from "./views/Profile/Profile";
+import Login from "./views/Login/LoginForm";
+import Registration from "./views/Registration/RegistrationForm";
 import Donate from "./views/Donate/Donate";
 import NotFound from "./views/NotFound";
 import NavBar from "./components/NavBar";
@@ -20,6 +22,8 @@ const App = () => {
         <Route exact path="/Resources" component={Resources} />
         <Route exact path="/Profile" component={Profile} />
         <Route exact path="/Donate" component={Donate} />
+        <Route exact path="/user/login" component={Login} />
+        <Route exact path="/user/register" component={Registration} />
         <Route component={NotFound}/>
       </Switch>
     </div>
