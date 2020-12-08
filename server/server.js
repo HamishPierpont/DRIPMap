@@ -1,4 +1,6 @@
-const path = require('path'),
+const path = require('path');
+const cors = require('cors');
+
 express = require('express'),
 mongoose = require('mongoose'),
 morgan = require('morgan'),
@@ -17,6 +19,8 @@ mongoose.set('useFindAndModify', false);
 
 // Initialize app
 const app = express();
+
+app.use(cors());
 
 // Enable request logging for development debugging
 app.use(morgan('dev'));
