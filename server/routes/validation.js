@@ -8,7 +8,7 @@ const registerValidation = (data) => {
   });
 
   return schema.validate(data);
-}
+};
 
 const loginValidation = (data) => {
     const schema = Joi.object({
@@ -17,7 +17,20 @@ const loginValidation = (data) => {
     });
   
     return schema.validate(data);
-  }
+};
+
+const createEventValidation = (data) => {
+  const schema = Joi.object({
+    title: Joi.string().required(),
+    description: Joi.string(),
+    typeOfDisaster: Joi.string().required(),
+    image: Joi.binary().required()
+  });
+
+  return schema.validate(data);
+};
 
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
+module.exports.createEventValidation = createEventValidation;
+
