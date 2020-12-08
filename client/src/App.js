@@ -1,17 +1,29 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
+
 import React from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
-import Home from "./views/Home/Home";
-import Resources from "./views/Resources/Resources";
-import Profile from "./views/Profile/Profile";
-import Login from "./views/Login/LoginForm";
-import Registration from "./views/Registration/RegistrationForm";
-import NewEvent from "./views/Events/NewEvent";
-import Donate from "./views/Donate/Donate";
+
 import NotFound from "./views/NotFound";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import "./App.css";
+
+import Home from "./views/Home/Home";
+import Donate from "./views/Donate/Donate";
+import Profile from "./views/Profile/Profile";
+import NewEvent from "./views/Events/NewEvent";
+import Login from "./views/Login/LoginForm";
+import Registration from "./views/Registration/RegistrationForm";
+
+import Resources from "./views/Resources/Resources";
+import Earthquakes from "./views/Resources/Earthquakes";
+import Fires from "./views/Resources/Fires";
+import Flooding from "./views/Resources/Flooding";
+import Hurricanes from "./views/Resources/Hurricanes";
+import Tornados from "./views/Resources/Tornados";
+
+
+
 
 const App = () => {
   return (
@@ -28,6 +40,11 @@ const App = () => {
         <Route exact path="/user/login" component={Login} />
         <Route exact path="/user/register" component={Registration} />
         <Route exact path="/events/new" component={NewEvent} />
+        <Route exact path="/resources/earthquakes" component={Earthquakes} />
+        <Route exact path="/resources/fires" component={Fires} />
+        <Route exact path="/resources/flooding" component={Flooding} />
+        <Route exact path="/resources/hurricanes" component={Hurricanes} />
+        <Route exact path="/resources/tornados" component={Tornados} />
         <Route component={NotFound}/>
       </Switch>
     </div>
