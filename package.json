@@ -1,4 +1,5 @@
 {
+  "homepage": ".",
   "private": true,
   "workspaces": [
     "client",
@@ -7,6 +8,7 @@
   "dependencies": {
     "bootstrap": "^4.5.3",
     "google-maps-react": "^2.0.6",
+    "i": "^0.3.6",
     "newsapi": "^2.4.1",
     "react-bootstrap": "^1.4.0",
     "react-twitter-embed": "^3.0.3"

@@ -16,6 +16,7 @@
   "author": "Dakota Rennemann",
   "license": "MIT",
   "dependencies": {
+    "i": "^0.3.6",
     "@hapi/joi": "^17.1.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",

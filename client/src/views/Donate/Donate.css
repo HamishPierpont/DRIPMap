@@ -1,5 +1,52 @@
-body {
-    margin: 0;
+.donate {
+    flex-direction: column;
+    align-items: center;
+    font-family: Forum;
+    background-color: #282c34;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.orgs {
+    text-align: left;
+    border: 5px solid #007BFF;
+    background-color: #e6ffe6;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+}
+
+.orgs2 {
+    text-align: center;
+    border: 5px solid #007BFF;
+    background-color: #e6ffe6;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    padding-left: 80px;
+}
+
+.linkHead {
+    text-align: center;
+}
+
+.linkText {
+    color: rgb(20, 28, 150);
+    text-decoration: underline;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.pageHeader {
+    text-align: center;
+    color: white;
+}
+
+.subheading {
+    margin: 25px 100px;
+    text-align: center;
+    color: white;
 }
 
 .App {
@@ -7,21 +54,44 @@ body {
     background: #282c34;
 }
 
-.App-logo {
-    height: 60vmin;
+.logo1 {
+    display: inline-block;
+    position: absolute;
+    right: 40px;
+    top: 35px;
 }
 
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+.logo2 {
+    display: inline-block;
+    position: absolute;
+    right: 30px;
+    top: 35px;
 }
 
-.App-link {
-    color: #09d3ac;
+.logo3 {
+    display: inline-block;
+    position: absolute;
+    right: 30px;
+    top: 40px;
+}
+
+.logo4 {
+    display: inline-block;
+    position: absolute;
+    right: 40px;
+    top: 39px;
+}
+
+.logo5 {
+    display: inline-block;
+    position: absolute;
+    right: 40px;
+    top: 40px;
+}
+
+.logo6 {
+    display: inline-block;
+    position: absolute;
+    right: 39px;
+    top: 40px;
 }
