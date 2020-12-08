@@ -65,6 +65,9 @@ router.post('/login', async (req, res) => {
 
   //Create and assign a json web token to keep user logged in
   const token = jwt.sign({user: user._id}, config.token_secret);
+  //res.header('auth-token', token).send(token);
+
+module.exports = router;
   res.header('auth-token', token);
   //res.status(200).send('Logged in!');
   res.status(200).json({
