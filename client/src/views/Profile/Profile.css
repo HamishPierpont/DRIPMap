@@ -2,9 +2,9 @@ body {
     margin: 0;
 }
 
-.App {
+.ProfileContainer {
     text-align: center;
-    background: #282c34;
+    background: #F0F0F0;
 }
 
 .App-logo {
