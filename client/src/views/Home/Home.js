@@ -28,19 +28,17 @@ import "@reach/combobox/styles.css";
 
 import TwitterContainer from '../../components/TwitterContainer';
 const twitterStyle = {
-  width: '17%',
   float: 'right',
   overflowY: 'scroll',
-  width: '18vw',
+  width: '20%',
   height: '100vh'
 };
 
 const libraries = ["places"];
 const mapContainerStyle = {
   float: 'left',
-  overflowY: 'scroll',
+  width: "80%",
   height: "100vh",
-  width: "75vw",
 };
 const options = {
   zoomControl: true

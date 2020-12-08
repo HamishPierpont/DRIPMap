@@ -47,6 +47,7 @@ const App = () => {
         <Route exact path="/resources/tornados" component={Tornados} />
         <Route component={NotFound}/>
       </Switch>
+      <Footer/>
     </div>
   );
 }
