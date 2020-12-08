@@ -2,13 +2,13 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import './Resources.css';
 
-function Flooding(props) {
+function Fires(props) {
     return (
         <div className="App">
-            <header className="App-header"> Flooding Page Content
+            <header className="App-header">
             </header>
         </div>
     );
 }
 
-export default withRouter(Flooding);
+export default withRouter(Fires);

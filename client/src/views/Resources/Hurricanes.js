@@ -5,7 +5,7 @@ import './Resources.css';
 function Hurricanes(props) {
     return (
         <div className="App">
-            <header className="App-header"> Fires Page Content
+            <header className="App-header">Hurricanes Page Content
             </header>
         </div>
     );
