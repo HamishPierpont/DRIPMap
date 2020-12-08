@@ -17,6 +17,7 @@
     "react-dom": "^16.14.0",
     "react-loadingg": "^1.7.2",
     "react-scripts": "^3.4.4",
+    "react-twitter-embed": "^3.0.3",
     "reactstrap": "^8.7.1",
     "use-places-autocomplete": "^1.6.0"
   },
