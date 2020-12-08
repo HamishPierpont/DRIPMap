@@ -27,11 +27,11 @@ function NavBar() {
                         Resources
                     </a>
                     <div class="dropdown-menu ml-auto" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/profile">Fires</a>
-                        <a class="dropdown-item" href="/profile">Hurricanes</a>
-                        <a class="dropdown-item" href="/profile">Tornados</a>
-                        <a class="dropdown-item" href="/profile">Earthquakes</a>
-                        <a class="dropdown-item" href="/profile">Flooding</a>
+                        <a class="dropdown-item" href="/resources/fires">Fires</a>
+                        <a class="dropdown-item" href="/resources/hurricanes">Hurricanes</a>
+                        <a class="dropdown-item" href="/resources/tornados">Tornados</a>
+                        <a class="dropdown-item" href="/resources/earthquakes">Earthquakes</a>
+                        <a class="dropdown-item" href="/resources/flooding">Flooding</a>
                     </div>
                 </li>
 
