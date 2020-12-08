@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { Container, Row, Col } from "react-bootstrap";
 import TwitterContainer from '../../components/TwitterContainer';
 
 const mapStyles = {
-  width: '83%',
+  width: '83.5%',
   height: '100%',
 };
 
 const twitterStyle = {
+  width: '17%',
   float: 'right',
   overflowY: 'scroll',
+  height: '100vh'
 };
 
 export class MapContainer extends Component {
@@ -30,7 +33,15 @@ export class MapContainer extends Component {
         />
         </div>
         <div style = {twitterStyle}>
-          <TwitterContainer/>
+          <main>
+            <Container fluid>
+              <Row>
+                <Col xs="auto">
+                  <TwitterContainer></TwitterContainer>
+                </Col>
+              </Row>
+            </Container>
+        </main>
         </div>
       </div>
     );
