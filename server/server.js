@@ -3,6 +3,7 @@ express = require('express'),
 mongoose = require('mongoose'),
 morgan = require('morgan'),
 bodyParser = require('body-parser'),
+multer = require('multer'),
 exampleRouter = require('./routes/routes'),
 authRouter = require('./routes/auth'),
 eventRouter = require('./routes/event');
