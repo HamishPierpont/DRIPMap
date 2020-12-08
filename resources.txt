@@ -1,0 +1,18 @@
+Creating Login and Registration Forms using react.js: https://coderwhodreams.com/blog/create-basic-login-forms-using-react-js-hooks-and-bootstrap/ 
+Older Ref: Fancy Forms in React with Reactstrap : https://www.digitalocean.com/community/tutorials/react-fancy-forms-reactstrap (Use regex from here to validate login forms)
+
+Conditional Rendering: https://reactjs.org/docs/conditional-rendering.html
+
+Implementing Authentification Tutorial: https://dev.to/dipakkr/implementing-authentication-in-nodejs-with-express-and-jwt-codelab-1-j5i
+
+Create Private Routes and Handling Sessions: https://coderwhodreams.com/blog/creating-private-routes-and-handling-session-in-react-js/
+
+Alerts: https://reactjsexample.com/a-simple-react-alert-component/
+
+
+Fixing Error:
+Access to XMLHttpRequest at 'http://localhost:5000/api/user/register' from origin 'http://localhost:3000' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+https://stackoverflow.com/questions/54212220/how-to-fix-access-to-xmlhttprequest-has-been-blocked-by-cors-policy-redirect-i
+
+
+Box Loading: https://reactjsexample.com/build-a-smooth-and-lightweight-react-component-loading-with-css/

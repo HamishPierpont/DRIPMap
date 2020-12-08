@@ -1,46 +1,37 @@
-## _**PLEASE READ THIS TO COMPLETION BEFORE ASKING ANY QUESTIONS!**_
-
 ### _**IMPORTANT NOTES**_ - 
 This project does not have a mongoDB connection setup.
 - local development: create a config file (make sure to name it config.js) in the config folder, which exports your db.uri connection. An example is provided, config/config.example.js. This file will be ignored by git so your db credentials will be kept safe when the app is deployed.
 
-
-## Getting Started
-This repository aims to assist you in beginning work on a MERN stack application for heroku deployment with a solid file structure as a foundation. To get started make a copy of this template repo for your project teams by clicking the green "Use this template" button above.
-
-Since this project will hold both the client application and the server application there will be node modules in two different places. First run `npm install` from the root. After this you will run `npm run-script install-all` from the root. From now on run this command anytime you want to install all modules again. This is a script we have defined in package.json. Alternatively your group may choose to simplify this process by using yarn workspaces as specified [here](https://yarnpkg.com/lang/en/docs/workspaces/).
-
-This app can be deployed directly to heroku since there is a script defined in package.json which will automatically handle building and deploying the app. For more information on deploying to heroku reference the extra resources at the bottom of this file. 
-
-
 ## Available Scripts
 
-Please note that any time the server is run in these scripts `nodemon` is used in place of `node` for easier development. If you are interested in how this works follow the nodemon In the project directory, you can run:
+Please note that any time the server is run in these scripts, `nodemon` is used in place of `node` for easier development. If you are interested in how this works, follow the nodemon.
 
-### `yarn workspace server dev`
+From the server directory, you can run:
+
+### `npm run dev`
 
 Runs both the client app and the server app in development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view the client in the browser.
 
-### `yarn workspace client start`
-
-Runs just the client app in development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view the client in the browser.
-
-
-### `yarn workspace server start`
+### `npm start`
 
 Runs just the server in development mode.<br>
 
-
-### `yarn workspace server build`
+### `npm run build`
 
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-If deploying to heroku this does not need to be run since it is handled by the heroku-postbuild script<br>
+If deploying to Heroku, this does not need to be run since it is handled by the heroku-postbuild script<br>
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+From the client directory, you can run: 
+
+### `npm start`
+
+Runs just the client app in development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view the client in the browser.
 
 
 ## File structure
@@ -67,8 +58,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Learn More
 To learn how to setup a local MongoDB instance for testing, check out how to [connect to MongoDB](https://docs.mongodb.com/guides/server/drivers/).
 
-To learn how to deploy a full-stack web app to heroku, check out [this great guide](https://daveceddia.com/deploy-react-express-app-heroku/).
+To learn how to deploy a full-stack web app to Heroku, check out [this great guide](https://daveceddia.com/deploy-react-express-app-heroku/).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-Change to test Github integration with Jira
