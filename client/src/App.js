@@ -6,6 +6,7 @@ import Resources from "./views/Resources/Resources";
 import Profile from "./views/Profile/Profile";
 import Login from "./views/Login/LoginForm";
 import Registration from "./views/Registration/RegistrationForm";
+import NewEvent from "./views/Events/NewEvent";
 import Donate from "./views/Donate/Donate";
 import NotFound from "./views/NotFound";
 import NavBar from "./components/NavBar";
@@ -24,6 +25,7 @@ const App = () => {
         <Route exact path="/Donate" component={Donate} />
         <Route exact path="/user/login" component={Login} />
         <Route exact path="/user/register" component={Registration} />
+        <Route exact path="/events/new" component={NewEvent} />
         <Route component={NotFound}/>
       </Switch>
     </div>

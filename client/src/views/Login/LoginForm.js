@@ -53,6 +53,7 @@ function LoginForm(props) {
     }
     const redirectToHome = () => {
         props.history.push('/home');
+        window.location.reload(false); //Refresh to update the nav bar
     }
     const redirectToRegister = () => {
         props.history.push('/user/register');

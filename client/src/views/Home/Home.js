@@ -1,5 +1,8 @@
-import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import React, { useEffect } from 'react';
+import { ACCESS_TOKEN_NAME, API_BASE_URL } from '../../shared/apiConstants';
+import { withRouter } from 'react-router-dom';
+import { useAlert } from 'react-alert'
+import axios from 'axios';
 
 import {
   GoogleMap,
@@ -20,7 +23,6 @@ import {
   ComboboxList,
   ComboboxOption,
 } from "@reach/combobox";
-import { formatRelative } from "date-fns";
 
 import "@reach/combobox/styles.css";
 
@@ -36,8 +38,8 @@ const libraries = ["places"];
 const mapContainerStyle = {
   float: 'left',
   overflowY: 'scroll',
-  height: "85vh",
-  width: "80vw",
+  height: "100vh",
+  width: "75vw",
 };
 const options = {
   zoomControl: true
@@ -47,26 +49,111 @@ const center = {
   lng: -82.3248
 };
 
+//To Do: Add datetime to all events. Add images for all events.
+const temporaryEvents = [
+  {
+    title: "Event One",
+    location: {
+      lat: 41.3954,
+      lng: 2.162
+    },
+    description: "Event one short description.",
+    user: "userOne"
+  },
+  {
+    title: "Event Two",
+    location: {
+      lat: 41.3917,
+      lng: 2.1649
+    },
+    description: "Event two short description.",
+    user: "userTwo"
+  },
+  {
+    title: "Event Three",
+    location: {
+      lat: 29.6494055,
+      lng: -82.3511235
+    },
+    description: "Event three short description.",
+    user: "userThree"
+  },
+  {
+    title: "Event Four",
+    location: {
+      lat: 25.7777193,
+      lng: -80.1908501
+    },
+    description: "Event four short description.",
+    user: "userFour"
+  },
+  {
+    title: "Event Five",
+    location: {
+      lat: 29.6482276313464,
+      lng: -82.3458230495453
+    },
+    description: "Event five short description.",
+    user: "userFive"
+  },
+  {
+    title: "Event Six",
+    location: {
+      lat: 25.462827,
+      lng: -80.4843201
+    },
+    description: "Event six short description.",
+    user: "userSix"
+  },
+  {
+    title: "Event Seven",
+    location: {
+      lat: 25.468721,
+      lng: -80.477554
+    },
+    description: "Event six short description.",
+    user: "userFive"
+  }
+];
 
-export default function MapContainer() {
+
+
+function MapContainer(props) {
+
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyCK0OcFEpHwXXXYuXYFlNwk5RBH7TaxbB8",
     libraries,
   });
-  const [markers, setMarkers] = React.useState([]);
+
+  const [events, setEvents] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
 
-  const onMapClick = React.useCallback((e) => {
-    setMarkers((current) => [
-      ...current,
-      {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-        time: new Date(),
-      },
-    ]);
-  }, []);
+  useEffect(() => {
+    
+    //Temporary:
+    setEvents(temporaryEvents);
+
+    //To Do: Axios call to get all events. 
+    /* axios.get(API_BASE_URL + '/events/all')
+            .then(function (response) {
+                if (response.status === 200) {
+                    setEvents(response.date.events);
+                }
+                else {
+                   alert.show("Error retrieving events, please try again.");
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    */
+  });
+
+  const onSelectEvent = async (event) => {
+    setSelected(event);
+  }
+
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
@@ -83,161 +170,57 @@ export default function MapContainer() {
 
   return (
 
-    
+
     <div>
 
-      <div style={{flex: 1, flexDirection: 'row',float: 'left'}} >
-      <Locate panTo={panTo} />
-      <Search panTo={panTo} />
+      <div style={{ flex: 1, flexDirection: 'row' }}>
+        <Search props panTo={panTo} />
       </div>
 
-      <div style={{flex: 1, flexDirection: 'row'}}>
-      <div style = {twitterStyle}>
-          <TwitterContainer/>
+      <div style={{ flex: 1, flexDirection: 'row' }}>
+        <div style={twitterStyle}>
+          <TwitterContainer />
         </div>
 
-      <GoogleMap
-        id="map"
-        mapContainerStyle={mapContainerStyle}
-        zoom={8}
-        center={center}
-        options={options}
-        onClick={onMapClick}
-        onLoad={onMapLoad}
-      >
-        {markers.map((marker) => (
-          <Marker
-            key={`${marker.lat}-${marker.lng}`}
-            position={{ lat: marker.lat, lng: marker.lng }}
-            onClick={() => {
-              setSelected(marker);
-            }}
-            icon={{
-              url: `/logo192.png`,
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(15, 15),
-              scaledSize: new window.google.maps.Size(30, 30),
-            }}
-          />
-        ))}
-
-        {selected ? (
-          <InfoWindow
-            position={{ lat: selected.lat, lng: selected.lng }}
-            onCloseClick={() => {
-              setSelected(null);
-            }}
-          >
-              <div>
-              <img  style={{width: 40, height: 30, backgroundColor: 'skyblue'}} src="/fire.png" alt="currentLocationMarker" />
-              <NewEventForm />
-            </div>
-          </InfoWindow>
-        ) : null}
-      </GoogleMap>
-        </div>
+        <GoogleMap
+          id="map"
+          mapContainerStyle={mapContainerStyle}
+          zoom={8}
+          center={center}
+          options={options}
+          onLoad={onMapLoad}
+        >
+          {events.map((event) => (
+            <Marker
+              key={`${event.location.lat}-${event.location.lng}`}
+              position={event.location}
+              onClick={() => {
+                onSelectEvent(event);
+              }}
+            />
+          ))}
+          {selected ?
+            (
+              <InfoWindow
+                position={selected.location}
+                clickable={true}
+                onCloseClick={() => setSelected(null)}
+              >
+                <div>
+                  <h1>{selected.title}</h1>
+                  <p>{selected.description}</p>
+                  <p>Host: {selected.user}</p>
+                  <img style={{ width: 40, height: 30, backgroundColor: 'skyblue' }} src="/fire.jpg" alt="currentLocationMarker" />
+                </div>
+              </InfoWindow>
+            ) : null}
+        </GoogleMap>
+      </div>
     </div>
   );
 }
-//              <p>LocationPin {formatRelative(selected.time, new Date())}</p>
 
-function NewEventForm({props}){
-  return (
-    <Form>
-    <FormGroup>
-      <Label for="exampleEmail">Email</Label>
-      <Input type="email" name="email" id="exampleEmail" placeholder="with a placeholder" />
-    </FormGroup>
-    <FormGroup>
-      <Label for="examplePassword">Password</Label>
-      <Input type="password" name="password" id="examplePassword" placeholder="password placeholder" />
-    </FormGroup>
-    <FormGroup>
-      <Label for="exampleSelect">Select</Label>
-      <Input type="select" name="select" id="exampleSelect">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </Input>
-    </FormGroup>
-    <FormGroup>
-      <Label for="exampleSelectMulti">Select Multiple</Label>
-      <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </Input>
-    </FormGroup>
-    <FormGroup>
-      <Label for="exampleText">Text Area</Label>
-      <Input type="textarea" name="text" id="exampleText" />
-    </FormGroup>
-    <FormGroup>
-      <Label for="exampleFile">File</Label>
-      <Input type="file" name="file" id="exampleFile" />
-      <FormText color="muted">
-        This is some placeholder block-level help text for the above input.
-        It's a bit lighter and easily wraps to a new line.
-      </FormText>
-    </FormGroup>
-    <FormGroup tag="fieldset">
-      <legend>Radio Buttons</legend>
-      <FormGroup check>
-        <Label check>
-          <Input type="radio" name="radio1" />{' '}
-          Option one is this and that—be sure to include why it's great
-        </Label>
-      </FormGroup>
-      <FormGroup check>
-        <Label check>
-          <Input type="radio" name="radio1" />{' '}
-          Option two can be something else and selecting it will deselect option one
-        </Label>
-      </FormGroup>
-      <FormGroup check disabled>
-        <Label check>
-          <Input type="radio" name="radio1" disabled />{' '}
-          Option three is disabled
-        </Label>
-      </FormGroup>
-    </FormGroup>
-    <FormGroup check>
-      <Label check>
-        <Input type="checkbox" />{' '}
-        Check me out
-      </Label>
-    </FormGroup>
-    <Button>Submit</Button>
-  </Form>   
-  );
-}
-
-function Locate({ panTo }) {
-  return (
-    <button
-      className="currentLocation"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-          },
-          () => null
-        );
-      }}
-    >
-      <img  style={{width: 40, height: 30, backgroundColor: 'skyblue'}} src="/current_location.png" alt="currentLocationMarker" />
-    </button>
-  );
-}
-
-function Search({ panTo }) {
+function Search(props, { panTo }) {
   const {
     ready,
     value,
@@ -245,14 +228,8 @@ function Search({ panTo }) {
     setValue,
     clearSuggestions,
   } = usePlacesAutocomplete({
-    requestOptions: {
-      location: { lat: () => 43.6532, lng: () => -79.3832 },
-      radius: 100 * 1000,
-    },
+    requestOptions: {},
   });
-
-  // https://developers.google.com/maps/documentation/javascript/reference/places-autocomplete-service#AutocompletionRequest
-
   const handleInput = (e) => {
     setValue(e.target.value);
   };
@@ -271,16 +248,42 @@ function Search({ panTo }) {
   };
 
   return (
-    <div className="search"
-    style={{marginBottom : '30px'}}
-    >
+    <div className="search" style={{ margin: 10, marginTop: 40, marginBottom: 40 }} >
       <Combobox onSelect={handleSelect}>
-        <ComboboxInput
-          value={value}
-          onChange={handleInput}
-          disabled={!ready}
-          placeholder="Search your location"
-        />
+
+        <div style={{ marginLeft: 200 }}>
+
+          <ComboboxInput style={{ width: 500, height: 40 }}
+            value={value}
+            onChange={handleInput}
+            disabled={!ready}
+            placeholder="Search a location">
+          </ComboboxInput>
+
+          {//TO DO: Updated Button Styling, Maybe add an icon 
+          }
+          <button style={{ marginLeft: 10, height: 40 }}
+            className="currentLocation"
+            onClick={() => {
+              navigator.geolocation.getCurrentPosition(
+                (position) => {
+                  panTo({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                  });
+                },
+                () => null
+              );
+            }}
+          >Show Current Location
+    </button>
+          <div style={{marginLeft: 250 }}>
+            {localStorage.getItem(ACCESS_TOKEN_NAME) ? 
+              (<li style={{listStyleType: 'none'}} class="nav-item active"><a class="nav-link" href="/events/new">Create a new event? <span class="sr-only"></span></a></li>) 
+            : (<li style={{listStyleType: 'none'}} class="nav-item active"><a class="nav-link" href="/user/login">Please login to create a new event.<span class="sr-only"></span></a></li>)
+            }
+          </div>
+        </div>
         <ComboboxPopover>
           <ComboboxList>
             {status === "OK" &&
@@ -290,6 +293,9 @@ function Search({ panTo }) {
           </ComboboxList>
         </ComboboxPopover>
       </Combobox>
-    </div>
+    </div >
   );
 }
+
+
+export default withRouter(MapContainer);
