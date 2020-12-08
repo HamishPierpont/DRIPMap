@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
+import { ACCESS_TOKEN_NAME} from '../shared/apiConstants';
 
 function NavBar() {
     return (
@@ -12,6 +13,7 @@ function NavBar() {
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
@@ -37,9 +39,15 @@ function NavBar() {
                     <a class="nav-link" href="/donate">Donate <span class="sr-only"></span></a>
                 </li>
 
-                <li class="nav-item active">
+                { localStorage.getItem(ACCESS_TOKEN_NAME) &&  <li class="nav-item active">
                     <a class="nav-link" href="/profile">Profile <span class="sr-only"></span></a>
-                </li>
+                </li> 
+                } 
+
+                { !(localStorage.getItem(ACCESS_TOKEN_NAME)) &&  <li class="nav-item active">
+                    <a class="nav-link" href="/profile">Login<span class="sr-only"></span></a>
+                </li> 
+                } 
 
                 </ul>
             </div>
