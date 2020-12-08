@@ -174,7 +174,7 @@ function MapContainer(props) {
     <div>
 
       <div style={{ flex: 1, flexDirection: 'row' }}>
-        <Search props panTo={panTo} />
+        <Search panTo={panTo}/>
       </div>
 
       <div style={{ flex: 1, flexDirection: 'row' }}>
@@ -220,7 +220,7 @@ function MapContainer(props) {
   );
 }
 
-function Search(props, { panTo }) {
+function Search({ panTo }) {
   const {
     ready,
     value,
