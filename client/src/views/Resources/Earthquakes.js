@@ -5,7 +5,7 @@ import './Resources.css';
 function Earthquakes(props) {
     return (
         <div className="App">
-            <header className="App-header"> Fires Page Content
+            <header className="App-header">Earthquakes Page Content
             </header>
         </div>
     );
