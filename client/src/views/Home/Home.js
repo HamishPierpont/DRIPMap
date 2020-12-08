@@ -28,6 +28,7 @@ import "@reach/combobox/styles.css";
 
 import TwitterContainer from '../../components/TwitterContainer';
 const twitterStyle = {
+  width: '17%',
   float: 'right',
   overflowY: 'scroll',
   width: '18vw',

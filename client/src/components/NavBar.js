@@ -5,7 +5,11 @@ function NavBar() {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="/home">DRIPMaP</a>
+            <div className="">    
+                <a class="navbar-brand my-2" href="/home">
+                    DRIPMaP
+                </a>
+            </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,7 +34,7 @@ function NavBar() {
                         <a class="dropdown-item" href="/profile">Flooding</a>
                     </div>
                 </li>
-                
+
                 <li class="nav-item active">
                     <a class="nav-link" href="/donate">Donate <span class="sr-only"></span></a>
                 </li>

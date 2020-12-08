@@ -3,19 +3,21 @@ import { TwitterTimelineEmbed } from "react-twitter-embed";
 
 const TwitterContainer = () => {
   return (
-    <section className="twitterContainer">
-      <div className="twitter-embed">
+    <section className="">
+      <div className="">
         <TwitterTimelineEmbed
           sourceType="profile"
-          screenName="NCS_Earthquake"
+          screenName="DisastersChart"
           options={{
-            tweetLimit: "3",
+            tweetLimit: "10",
             width: "100%",
             height: 50,
           }}
-          theme="light"
+          //theme="dark"
+          noHeader="true"
+          noBorders="true"
           noFooter="true"
-
+          noScrollbar="true"
         ></TwitterTimelineEmbed>
       </div>
     </section>

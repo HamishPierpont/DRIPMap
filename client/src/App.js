@@ -10,6 +10,8 @@ import NewEvent from "./views/Events/NewEvent";
 import Donate from "./views/Donate/Donate";
 import NotFound from "./views/NotFound";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import "./App.css";
 
 const App = () => {
   return (

@@ -9,6 +9,7 @@
     "bootstrap": "^4.5.3",
     "date-fns": "^2.16.1",
     "google-maps-react": "^2.0.6",
+    "i": "^0.3.6",
     "react": "^16.14.0",
     "react-alert": "^7.0.2",
     "react-alert-template-basic": "^1.0.0",
