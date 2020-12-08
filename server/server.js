@@ -3,7 +3,6 @@ express = require('express'),
 mongoose = require('mongoose'),
 morgan = require('morgan'),
 bodyParser = require('body-parser'),
-multer = require('multer'),
 exampleRouter = require('./routes/routes'),
 authRouter = require('./routes/auth'),
 eventRouter = require('./routes/event');
@@ -31,7 +30,7 @@ app.use('/api/example', exampleRouter);
 app.use('/api/user', authRouter);
 
 // Router for event CRUD operations
-app.use('api/event', eventRouter);
+app.use('/api/event', eventRouter);
 
 // Serve any static files TODO: separate prod & dev environments
 app.use(express.static(path.join(__dirname, '../../client/build')));

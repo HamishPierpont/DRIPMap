@@ -24,7 +24,7 @@ const createEventValidation = (data) => {
     title: Joi.string().required(),
     description: Joi.string(),
     typeOfDisaster: Joi.string().required(),
-    image: Joi.binary().required()
+    buffer: Joi.binary().required()
   });
 
   return schema.validate(data);
