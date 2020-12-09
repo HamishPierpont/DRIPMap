@@ -25,8 +25,8 @@ router.post('/create', verify, upload.single('image'), async (req, res) => {
     description: req.body.description,
     typeOfDisaster: req.body.typeOfDisaster,
     location: req.body.location,
-    startDate: req.body.startDate,
-    endDate: req.body.endDate,
+    date: req.body.date,
+    userName: req.body.userName,
     image: image
   });
 

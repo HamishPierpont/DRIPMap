@@ -12,6 +12,10 @@ const formDataModel = new mongoose.Schema({
         type: String,
         required: true
     },
+    userName: {
+        type: String,
+        required: true
+    },
     location: {
         lat: {
             type: Number,
@@ -22,11 +26,7 @@ const formDataModel = new mongoose.Schema({
             required: true,
       	}
     },
-    startDate: {
-        type: Date,
-        required: true
-    },
-    endDate: {
+    date: {
         type: Date,
         required: true
     },
