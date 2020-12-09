@@ -219,7 +219,7 @@ function Donate() {
                   </a>                 
                 </p>
                 Currently, DRIPMaP is a three man operation with Nickan Hussaini as our project manager, Joel John
-                as our srcum master, and Hamish Pierpont as our lead developer. If you want to support the team
+                as our scrum master, and Hamish Pierpont as our lead developer. If you want to support the team
                 and keep DRIPMaP going, click the link above to support us directly through our Venmo.
               </p>
               <br></br>

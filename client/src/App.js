@@ -17,7 +17,7 @@ import Registration from "./views/Registration/RegistrationForm";
 
 import Resources from "./views/Resources/Resources";
 import Earthquakes from "./views/Resources/Earthquakes";
-import Fires from "./views/Resources/Fires";
+import Fires from "./views/Resources/Wildfires";
 import Flooding from "./views/Resources/Flooding";
 import Hurricanes from "./views/Resources/Hurricanes";
 import Tornados from "./views/Resources/Tornados";
@@ -34,7 +34,6 @@ const App = () => {
         <Route exact path="/">
           <Redirect to="/Home" />
         </Route>
-        <Route exact path="/Resources" component={Resources} />
         <Route exact path="/Profile" component={Profile} />
         <Route exact path="/Donate" component={Donate} />
         <Route exact path="/user/login" component={Login} />

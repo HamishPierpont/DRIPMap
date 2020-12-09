@@ -27,7 +27,7 @@ function NavBar() {
                         Resources
                     </a>
                     <div class="dropdown-menu ml-auto" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/resources/fires">Fires</a>
+                        <a class="dropdown-item" href="/resources/fires">Wildfires</a>
                         <a class="dropdown-item" href="/resources/hurricanes">Hurricanes</a>
                         <a class="dropdown-item" href="/resources/tornados">Tornados</a>
                         <a class="dropdown-item" href="/resources/earthquakes">Earthquakes</a>
