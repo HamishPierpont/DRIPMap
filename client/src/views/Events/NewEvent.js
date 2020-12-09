@@ -56,6 +56,7 @@ function NewEvent({ props }) {
   })
 
   const handleChange = (e) => {
+    console.log(e.target);
     const { id, value } = e.target
     setState(prevState => ({
       ...prevState,
@@ -74,9 +75,10 @@ function NewEvent({ props }) {
         "typeOfDisaster": state.typeOfDisaster, 
         "userName":  localStorage.getItem("username"),
         "location": selected,
-        "date" : new Date(),
-        //"image": state.image,
+        "date" : new Date()
       }
+
+      console.log(payload);
 
       let data = new FormData();
       data.append('file', state.image, state.image.name);
@@ -84,7 +86,7 @@ function NewEvent({ props }) {
       
       console.log("Person has submitted " , payload);
 
-      axios.post(API_BASE_URL + '/events/create', { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } }, data) //payload)
+      axios.post(API_BASE_URL + '/event/create', { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } }, data) //payload)
         .then(function (response) {
           if (response.status === 200) {
             setState(prevState => ({
@@ -201,15 +203,19 @@ function NewEvent({ props }) {
 
   const handleImageChange = (e) => {
     e.preventDefault();
-
     let reader = new FileReader();
     let file = e.target.files[0];
 
     reader.onloadend = () => {
-        setState({
-            image: file,
-            imagePreviewUrl: reader.result
-        });
+        setState(prevState => ({
+          ...prevState,
+          ["image"]: file
+        }));
+
+        setState(prevState => ({
+          ...prevState,
+          ["imagePreviewUrl"]: reader.result
+        }));
     }
 
     reader.readAsDataURL(file);
@@ -342,7 +348,7 @@ function NewEvent({ props }) {
             </div>
             <div className="buttonClass">
             <center>
-              
+
               <button
               type="submit"
               className="btn btn-primary"

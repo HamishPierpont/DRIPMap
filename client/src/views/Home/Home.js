@@ -183,7 +183,7 @@ function Search({ panTo }) {
       <div className="search" style={{ backgroundColor: "#282c34", paddingTop: 25 }}>
         <Combobox onSelect={handleSelect}>
 
-          <div style={{ marginLeft: 600 }}>
+        <div style={{ marginLeft: "25vw" }}>
 
             <ComboboxInput style={{ width: 500, height: 40 }}
               value={value}
