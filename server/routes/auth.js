@@ -4,7 +4,7 @@ const User = require('../models/User');
 const {registerValidation, loginValidation} = require('./validation');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
-const tokenVerification = require("./verifyToken");
+const verify = require("./verifyToken");
 
 //Register
 router.post('/register', async (req, res) => {
@@ -76,20 +76,24 @@ router.post('/login', async (req, res) => {
   //res.header('auth-token', token).send(token);
 
   res.header('auth-token', token);
-  //res.status(200).send('Logged in!');
-  //const payload = Object.assign({token},} 
   res.status(200).json({
     token,
     userName: user.userName
   });
 });
 
+//Update user information
+router.post('/update/:_userName', verify, async (req, res) => {});
+
+//Delete user from db
+router.post('/delete/:_userName', verify, async (req, res) => {});
+
 /**
  * @method - GET
  * @description - Get LoggedIn User
  * @param - /user/me
  */
-router.get("/me", tokenVerification, async (req, res) => {
+router.get("/me", verify, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
     const user = await User.findOne(req.user.email);
