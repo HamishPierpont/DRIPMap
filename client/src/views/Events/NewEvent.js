@@ -64,7 +64,7 @@ function NewEvent({ props }) {
  
   const sendDetailsToServer = () => {
 
-    if (state.selected.length && state.title.length && state.typeOfDisaster.length && state.userName.length ) {
+    if (selected.length && state.title.length && state.typeOfDisaster.length ) {
       
       const payload = {
         "title": state.title,
