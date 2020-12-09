@@ -22,6 +22,67 @@ function Tornados(props) {
                 </Col>
             </Row>
 
+            {/*What to do before and after*/}
+            <Row>
+                <Col>
+                <br></br>
+                <p className="block">
+                    <h1 className="blockHeader">What to do before a Tornado</h1>
+                    <ul>
+                        <li>Know your area’s tornado risk. In the U.S., the Midwest and the Southeast have a greater risk for tornadoes.</li>
+                        <li>Know the signs of a tornado, including a rotating, funnel-shaped cloud; an approaching cloud of debris; or a loud roar—similar to a freight train.</li>
+                        <li>Sign up for your community’s warning system.</li>
+                        <li>Pay attention to weather reports. Meteorologists can predict when conditions might be right for a tornado.</li>
+                        <li>Identify and practice going to a safe shelter, while following the latest social and physical-distancing and other health safety guidelines from the Centers for Disease Control and Prevention and your local health authorities, in the event of high winds, such as a safe room built using FEMA criteria or a storm shelter built to ICC 500 standards.</li>
+                    </ul>
+                </p>
+                </Col>
+
+                <Col>
+                <br></br>
+                <p className="block">
+                    <h1 className="blockHeader">What to do during a Tornado</h1>
+                    <ul>
+                        <li>Immediately go to a safe location that you identified.</li>
+                        <li>If there is still time, try to board windows and doors with furniture.</li>
+                        <li>Take additional cover by shielding your head and neck with your arms and putting materials such as furniture and blankets around you.</li>
+                        <li>Listen to EAS, NOAA Weather Radio, or local alerting systems for current emergency information and instructions.</li>
+                        <li>Do not try to outrun a tornado in a vehicle.</li>
+                        <li>If you are in a car or outdoors and cannot get to a building, cover your head and neck with your arms and cover your body with a coat or blanket, if possible.</li>
+                    </ul>
+                </p>
+                </Col>
+            </Row>
+
+            {/*Links and stats*/}
+            <Row>
+                <Col>
+                    <br></br>
+                    <p className="bottomBlock">
+                        <h1 className="blockHeader">Tornado Statistics</h1>
+                        <ul>
+                            <li>In 2020 through November there were 1,212 tornadoes compared with 1,448 in the first 11 months of 2019.</li>
+                            <li>The costliest U.S. catastrophe involving tornadoes, based on insured losses, occurred in April 2011. It hit Tuscaloosa, Alabama, and other areas, and cost $8.4 billion in insured damages (in 2019 dollars).</li>
+                            <li>The winds of a tornado can reach speeds of up to 480km per hour – that’s strong enough to peel the roofs off houses, uproot trees and hurl heavy objects, such as cars, hundreds of metres.</li>
+                        </ul>
+                    </p>
+                </Col>
+
+                <Col>
+                    <br></br>
+                    <p className="bottomBlock">
+                        <h1 className="blockHeader">Helpful Links</h1>
+                        <ul>
+                            <li><a href="https://www.iii.org/fact-statistic/facts-statistics-tornadoes-and-thunderstorms#:~:text=Tornado%20deaths%20in%202020%20are,in%202018%2C%20according%20to%20NOAA.&text=There%20were%2041%20direct%20fatalities,in%202018%2C%20according%20to%20NOAA." target="_blank" className="linkTextBody">III's Facts+Statistics on Tornados</a></li>
+                            <li><a href="https://www.cdc.gov/nceh/features/tornadosafety/index.html#:~:text=Although%20there%20is%20no%20completely,a%20heavy%20table%20or%20workbench)." target="_blank" className="linkTextBody">CDC Tornado Safety Tips</a></li>
+                            <li><a href="https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/tornado.html" target="_blank" className="linkTextBody">Red Cross' Tornado Preparation Guide</a></li>
+                            <li><a href="https://www.ready.gov/tornadoes" target="_blank" className="linkTextBody">Ready.gov's Tornado Information Sheet</a></li>
+                            <li><a href="https://www.weather.gov/safety/tornado" target="_blank" className="linkTextBody">National Weather Service's Tornado Safety Guide</a></li>
+                        </ul>
+                    </p>
+                </Col>
+            </Row>
+
             </Container>  
         </div>  
     );
