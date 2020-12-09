@@ -59,24 +59,28 @@ function LoginForm(props) {
         props.history.push('/user/register');
     }
     return (
-        <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
-            <form>
+        <div className="app">
+            <form className="formContainer" style={{backgroundColor: "#282c34"}}>
+                <br></br>
+                <h1 className="header">Log In</h1>
+                <br></br>
+                <br></br>
                 <div className="form-group text-left">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
+                <label className="bodyWordsAgain1" htmlFor="nameInput">Email Address*: </label>
                     <input type="email"
-                        className="form-control"
+                        className="formChangerAgain1"
                         id="email"
                         aria-describedby="emailHelp"
                         placeholder="Enter email"
                         value={state.email}
                         onChange={handleChange}
                     />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                    
                 </div>
                 <div className="form-group text-left">
-                    <label htmlFor="exampleInputPassword1">Password</label>
+                <label className="bodyWordsAgain2" htmlFor="exampleInputEmail1">Password: </label>
                     <input type="password"
-                        className="form-control"
+                        className="formChangerAgain2"
                         id="password"
                         placeholder="Password"
                         value={state.password}
@@ -85,17 +89,20 @@ function LoginForm(props) {
                 </div>
                 <div className="form-check">
                 </div>
+                <small id="emailHelp" className="messageText">*DRIPMaP will never share your email with other people or companies</small>
+                <br></br>
+                <br></br>
                 <button
                     type="submit"
                     className="btn btn-primary"
                     onClick={handleSubmitClick}
-                >Login</button>
+                >Log In</button>
             </form>
             <div className="alert alert-success mt-2" style={{ display: state.successMessage ? 'block' : 'none' }} role="alert">
                 {state.successMessage}
             </div>
             <div className="registerMessage">
-                <span>Dont have an account? </span>
+                <div className="messageText">Dont have an account? </div>
                 <span className="loginText" onClick={() => redirectToRegister()}>Register</span>
             </div>
         </div>

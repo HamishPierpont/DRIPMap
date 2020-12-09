@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ACCESS_TOKEN_NAME, API_BASE_URL } from '../../shared/apiConstants';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import "./NewEvent.css"
 
 import {
   GoogleMap,
@@ -177,8 +178,10 @@ function NewEvent({ props }) {
       <div className="search"
         style={{ marginBottom: '30px' }}
       >
+              <p className="bw3">Location:</p>
         <Combobox onSelect={handleSelect}>
           <ComboboxInput
+            className="class"
             selectOnClick
             value={value}
             onChange={handleInput}
@@ -221,22 +224,18 @@ function NewEvent({ props }) {
 
   
    let $imagePreview = null;
-  // state.imagePreviewUrl ?
-  //     ( $imagePreview = (<div><img src={state.imagePreviewUrl} className={'img-preview'} /></div>))
-  //   : ( $imagePreview = (<div className="previewText"></div>))
-
 
   return (
-  
-      <div style={{ margin: '70px' }}>
-        <center><h1> Create a New Event </h1></center>
-
+      <div className="app">
+        <br></br>
+        <center><h1 className="title"> Create a New Event </h1></center>
+        <br></br>
         <div>
-          <form>
+          <form className="formContainer" style={{backgroundColor: "#282c34"}}>
             <div className="form-group text-left" >
-              <label htmlFor="nameInput">Event Title</label>
+              <label className="bw1" htmlFor="nameInput">Event Title:</label>
               <input type="text"
-                className="form-control"
+                className="fc1"
                 id="title"
                 placeholder="Name of my event"
                 value={state.title}
@@ -244,21 +243,20 @@ function NewEvent({ props }) {
               />
             </div>
             <div className="form-group text-left">
-              <label htmlFor="InputDescription">Description</label>
+              <label className="bw2" htmlFor="InputDescription">Description:</label>
               <input type="textarea"
-                className="form-control"
+                className="fc2"
                 id="description"
                 aria-describedby="descriptionHelp"
-                placeholder="Enter a short description"
+                placeholder="Enter a short description of the disaster"
                 value={state.description}
                 onChange={handleChange}
               />
-              <small id="descriptionHelp" className="form-text text-muted">Short description helps everyone</small>
             </div>
-            <div className="form-group">
-              <label htmlFor="FileInput">Image</label>
+            <div className="form-group text-left">
+              <label className="bw3" htmlFor="FileInput">Image:</label>
               <input type="file"
-                className="form-control"
+                className="fc3"
                 id="imageFileInput"
                 onChange={(e) => handleImageChange(e)} 
                 /> 
@@ -269,6 +267,7 @@ function NewEvent({ props }) {
             </div>
             <div className="form-group text-left">
             <Search panTo={panTo} />
+            <div className="mapClass">
               <GoogleMap
                 id="map"
                 mapContainerStyle={mapContainerStyle}
@@ -281,14 +280,21 @@ function NewEvent({ props }) {
                (<Marker position = {selected} draggable={true} onDragEnd={(e) => onMarkerDragEnd(e)}/>) :null 
                 } 
               </GoogleMap>
+              </div>
             </div>
-            <center><button
+            <div className="buttonClass">
+            <center>
+              
+              <button
               type="submit"
               className="btn btn-primary"
               onClick={handleSubmitClick}
-            >
-              Submit
-                </button></center>
+              >
+                  Submit
+              </button>
+                
+                </center>
+                </div>
           </form>
         </div>
       </div>

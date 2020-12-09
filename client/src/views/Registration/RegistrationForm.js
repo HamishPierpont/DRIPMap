@@ -4,6 +4,7 @@ import axios from 'axios';
 import './RegistrationForm.css';
 import { ACCESS_TOKEN_NAME, API_BASE_URL } from '../../shared/apiConstants';
 import { withRouter } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 
 
 function RegistrationForm(props) {
@@ -70,12 +71,15 @@ function RegistrationForm(props) {
     }
 
     return (
-        <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
-            <form>
+        <div className="app">
+            <form className="formContainer" style={{backgroundColor: "#282c34"}}>
+                <br></br>
+                <h1 className="header">Registration</h1>
+                <br></br>
                 <div className="form-group text-left">
-                    <label htmlFor="nameInput">Name</label>
+                    <label className="bodyWords1" htmlFor="nameInput">Name: </label>
                     <input type="text"
-                        className="form-control"
+                        className="formChanger1"
                         id="name"
                         placeholder="John Doe"
                         value={state.name}
@@ -83,37 +87,43 @@ function RegistrationForm(props) {
                     />
                 </div>
                 <div className="form-group text-left">
-                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <label className="bodyWords2" htmlFor="exampleInputEmail1">Email address*: </label>
                     <input type="email"
-                        className="form-control"
+                        className="formChanger2"
                         id="email"
                         aria-describedby="emailHelp"
-                        placeholder="Enter email"
+                        placeholder="johndoe@gmail.com"
                         value={state.email}
                         onChange={handleChange}
                     />
-                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <br></br> 
                 </div>
                 <div className="form-group text-left">
-                    <label htmlFor="exampleInputPassword1">Password</label>
+                    <label className="bodyWords3" htmlFor="exampleInputPassword1">Password*: </label>
                     <input type="password"
-                        className="form-control"
+                        className="formChanger3"
                         id="password"
                         placeholder="Password"
                         value={state.password}
                         onChange={handleChange}
                     />
+                    <br></br>
                 </div>
                 <div className="form-group text-left">
-                    <label htmlFor="exampleInputPassword1">Confirm Password</label>
+                    <label className="bodyWords4" htmlFor="exampleInputPassword1">Confirm Password: </label>
                     <input type="password"
-                        className="form-control"
+                        className="formChanger4"
                         id="confirmPassword"
                         placeholder="Confirm Password"
                         value={state.confirmPassword}
                         onChange={handleChange}
                     />
                 </div>
+                <small id="emailHelp" className="specialText">*DRIPMaP will never share your email with other people or companies</small>
+                <br></br>
+                <small id="emailHelp" className="specialText">*Password must be at least 6 characters long</small>
+                <br></br>
+                <br></br>
                 <button
                     type="submit"
                     className="btn btn-primary"

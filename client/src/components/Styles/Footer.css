@@ -2,8 +2,11 @@
     color: white;
     background-color: #007BFF;
     padding-top: 1em;
-    width: 98.3vw;
+    max-width: 100%;
+    overflow-x: hidden;
+    width: 100vw;
     padding-left: 40vw;
+    float: bottom;
   }
   .heart {
     position: relative;
