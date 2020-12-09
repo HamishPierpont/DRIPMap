@@ -28,9 +28,8 @@ import usePlacesAutocomplete, {
 const libraries = ["places"];
 const mapContainerStyle = {
   marginTop: '15px',
-  overflowY: 'scroll',
-  height: "50vh",
-  width: "92vw",
+  height: "40vh",
+  width: "60vw",
 };
 const options = {
   zoomControl: true
@@ -168,7 +167,6 @@ function NewEvent({ props }) {
 
     return (
       <div className="search"
-        style={{ marginBottom: '30px' }}
       >
               <p className="bw3">Location:</p>
         <Combobox onSelect={handleSelect}>
@@ -239,7 +237,7 @@ function NewEvent({ props }) {
         <label className="bw1" htmlFor="nameInput">Type of Disaster:</label>
         <div style={{ marginLeft: '80px' }}>
           <div className="radio">
-          <label className="bw1">
+          <label className="option1">
             <input
               type="radio"
               id="typeOfDisaster"
@@ -251,7 +249,7 @@ function NewEvent({ props }) {
           </label>
         </div>
         <div className="radio">
-          <label className="bw1">
+          <label className="option2">
             <input
               type="radio"
               id="typeOfDisaster"
@@ -263,7 +261,7 @@ function NewEvent({ props }) {
           </label>
         </div>
         <div className="radio">
-          <label className="bw1">
+          <label className="option3">
             <input
               type="radio"
               id="typeOfDisaster"
@@ -275,7 +273,7 @@ function NewEvent({ props }) {
           </label>
         </div>
         <div className="radio">
-          <label className="bw1">
+          <label className="option4">
             <input
               type="radio"
               id="typeOfDisaster"
@@ -287,7 +285,7 @@ function NewEvent({ props }) {
           </label>
         </div>
         <div className="radio">
-          <label className="bw1">
+          <label className="option5">
             <input
               type="radio"
               id="typeOfDisaster"
