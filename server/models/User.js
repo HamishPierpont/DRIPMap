@@ -1,7 +1,19 @@
 const mongoose = require('mongoose');
 
 const userDataModel = new mongoose.Schema({
-    name: {
+    firstName: {
+        type: String,
+        required: true,
+        min: 1,
+        max: 256
+    },
+    lastName: {
+        type: String,
+        required: true,
+        min: 1,
+        max: 256
+    },
+    userName: {
         type: String,
         required: true,
         min: 1,
