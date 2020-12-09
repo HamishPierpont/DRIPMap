@@ -91,16 +91,16 @@ function NewEvent({ props }) {
               'successMessage': 'Event created successfully. Redirecting to home page..'
             }))
             props.history.push('/Home');
-            alert.show("Success")
+            alert("Success");
           } else {
-            alert.show("Some error occured")
+            alert("Some error occured");
           }
         })
         .catch(function (error) {
           console.log(error);
         });
     } else {
-      alert.show('Error')
+      alert('Error');
     }
 
   }
