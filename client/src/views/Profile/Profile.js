@@ -10,7 +10,7 @@ function Profile(props) {
 
   const [state, setState] = useState({
       currentUser : ""
-  })
+  });
 
   useEffect(() => {
     axios.get(API_BASE_URL + '/user/me', { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } })
@@ -24,7 +24,7 @@ function Profile(props) {
       .catch(function (error) {
         props.history.push('user/login');
       });
-  })
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem(ACCESS_TOKEN_NAME);

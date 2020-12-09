@@ -4,8 +4,6 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import "./NewEvent.css"
 
-//TO DO: Connect to back end, make marker work () -> See: https://cherniavskii.com/using-leaflet-in-react-apps-with-react-hooks/ , make sure images works 
-
 import {
   GoogleMap,
   useLoadScript,
@@ -42,18 +40,19 @@ const center = {
   lng: -82.32278
 };
 
-export default function NewEvent({ props }) {
+
+function NewEvent({ props }) {
+
+  const [selected, setSelected] = React.useState(null);
+  const [input, setInput] = React.useState(null);
 
   const [state, setState] = React.useState({
-    location: "",
-    selectedLocation: { //default is Gainesville
-      lat: 29.65195,
-      lng: -82.32278
-    },
     title: "",
     description: "",
+    value : "",
     creator: "",
-    images: [],
+    image: null,
+    imagePreviewUrl: null
   })
 
   const handleChange = (e) => {
@@ -64,25 +63,24 @@ export default function NewEvent({ props }) {
     }))
   }
 
-  const handleLocationSelection = (address, lat, lng) => {
-    setState({
-      selectedLocation: {
-        lat: lat,
-        lng: lng
-      }
-    });
-    console.log(state.selectedLocation);
-  }
-
+ 
   const sendDetailsToServer = () => {
 
-    console.log("Person has submitted");
+    const payload = {
+      "location": selected,
+     // "user": state.creator, //might have to do a get
+      "title": state.title,
+      "description": state.description,
+      "image": state.image,
+    }
+    
+    console.log("Person has submitted " , payload);
     return; //
 
-    if (state.email.length && state.password.length) {
+    if (state.location.length && state.title.length ) {
       //props.showError(null);
       const payload = {
-        "location": state.selectedLocation,
+        "location": state.selected,
         "user": state.creator, //might have to do a get
         "title": state.title,
         "description": state.description,
@@ -153,6 +151,7 @@ export default function NewEvent({ props }) {
     } = usePlacesAutocomplete({
       requestOptions: {},
       debounce: 300,
+      defaultValue:  "Search for a Location"
     });
 
     const handleInput = (e) => {
@@ -166,11 +165,13 @@ export default function NewEvent({ props }) {
       try {
         const results = await getGeocode({ address });
         const { lat, lng } = await getLatLng(results[0]);
+        setSelected({lat, lng});
         panTo({ lat, lng });
-        ;
       } catch (error) {
         console.log("😱 Error: ", error);
       }
+
+
     };
 
     return (
@@ -181,11 +182,10 @@ export default function NewEvent({ props }) {
         <Combobox onSelect={handleSelect}>
           <ComboboxInput
             className="class"
+            selectOnClick
             value={value}
-            default={state.location}
             onChange={handleInput}
             disabled={!ready}
-            placeholder="Search for a location"
           />
           <ComboboxPopover>
             <ComboboxList>
@@ -200,7 +200,30 @@ export default function NewEvent({ props }) {
     );
   }
 
+  const onMarkerDragEnd = (e) => {
+    const lat = e.latLng.lat();
+    const lng = e.latLng.lng();
+    setSelected({ lat, lng})
+  };
 
+  const handleImageChange = (e) => {
+    e.preventDefault();
+
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    reader.onloadend = () => {
+        setState({
+            image: file,
+            imagePreviewUrl: reader.result
+        });
+    }
+
+    reader.readAsDataURL(file);
+  };
+
+  
+   let $imagePreview = null;
 
   return (
       <div className="app">
@@ -235,7 +258,12 @@ export default function NewEvent({ props }) {
               <input type="file"
                 className="fc3"
                 id="imageFileInput"
-              />
+                onChange={(e) => handleImageChange(e)} 
+                /> 
+                <div className="img-preview">
+                {$imagePreview}
+                  </div>
+
             </div>
             <div className="form-group text-left">
             <Search panTo={panTo} />
@@ -248,8 +276,8 @@ export default function NewEvent({ props }) {
                 options={options}
                 onLoad={onMapLoad}
               >
-                 {state.selectedLocation.lat && (
-               <Marker position = {state.selectedLocation}/>)
+                 {selected? 
+               (<Marker position = {selected} draggable={true} onDragEnd={(e) => onMarkerDragEnd(e)}/>) :null 
                 } 
               </GoogleMap>
               </div>
@@ -272,3 +300,5 @@ export default function NewEvent({ props }) {
       </div>
   );
 }
+
+export default withRouter(NewEvent)
