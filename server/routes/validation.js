@@ -2,7 +2,9 @@ const Joi = require('@hapi/joi');
 
 const registerValidation = (data) => {
   const schema = Joi.object({
-      name: Joi.string().min(6).required(),
+      firstName: Joi.string().min(1).required(),
+      lastName: Joi.string().min(1).required(),
+      userName: Joi.string().min(1).required(),
       email: Joi.string().min(6).required().email(),
       password: Joi.string().min(6).required()
   });
@@ -21,10 +23,20 @@ const loginValidation = (data) => {
 
 const createEventValidation = (data) => {
   const schema = Joi.object({
-    title: Joi.string().required(),
+    title: Joi.string().min(1).required(),
     description: Joi.string(),
-    typeOfDisaster: Joi.string().required(),
-    buffer: Joi.binary().required()
+    typeOfDisaster: Joi.string().min(1).required(),
+    location: {
+        lat: Joi.number().required(),
+        lng: Joi.number().required()
+    },
+    startDate: Joi.date().required(),
+    endDate: Joi.date().required(),
+    image: {
+        size: Joi.number().integer().required(),
+        buffer: Joi.binary().required(),
+        mimeType: Joi.string()
+    }
   });
 
   return schema.validate(data);

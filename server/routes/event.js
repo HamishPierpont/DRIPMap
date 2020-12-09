@@ -11,6 +11,7 @@ const upload = multer();
 router.post('/create', verify, upload.single('image'), async (req, res) => {
   
   //Validate data first!
+  console.log(req.file);
   console.log(Object.assign(req.body, {buffer: req.file.buffer}));
   const {error} = createEventValidation(Object.assign(req.body, {buffer: req.file.buffer})); 
   if (error) {
