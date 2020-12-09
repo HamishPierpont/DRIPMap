@@ -1,0 +1,25 @@
+.pageHeader {
+    text-align: center;
+    color: white;
+}
+
+.App {
+    text-align: center;
+    background: #282c34;
+}
+
+.block{
+    text-align: left;
+    border: 5px solid #007BFF;
+    background-color: #e6ffe6;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 80px;
+}
+
+.blockHeader{
+    text-align: center;
+    padding-bottom: 30px;
+    color: black;
+}
