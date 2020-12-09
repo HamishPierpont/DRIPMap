@@ -1,11 +1,9 @@
-const path = require('path');
-const cors = require('cors');
-
+const path = require('path'),
+cors = require('cors'),
 express = require('express'),
 mongoose = require('mongoose'),
 morgan = require('morgan'),
 bodyParser = require('body-parser'),
-exampleRouter = require('./routes/routes'),
 authRouter = require('./routes/auth'),
 eventRouter = require('./routes/event');
 
@@ -19,6 +17,7 @@ mongoose.set('useFindAndModify', false);
 // Initialize app
 const app = express();
 
+// User cors to prevent resources from different origins being blocked
 app.use(cors());
 
 // Enable request logging for development debugging
@@ -26,9 +25,6 @@ app.use(morgan('dev'));
 
 // Body parsing middleware
 app.use(bodyParser.json());
-
-// Add a router TODO: the api shouldn't actually be 'api/example'
-app.use('/api/example', exampleRouter);
 
 // Router for authentication
 app.use('/api/user', authRouter);

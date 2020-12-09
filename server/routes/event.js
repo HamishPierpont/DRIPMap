@@ -48,18 +48,19 @@ router.get('/read', async (req, res) => {
   res.send(events);
 });
 
-//Read events from database by userId
-router.get('/read/:userId', verify, async (req, res) => {
-  res.send('Have not implemented yet!'); 
+//Read events from database by userName
+router.get('/read/:_userName', verify, async (req, res) => {
+  const events = await formData.find({userName: _userName});
+  res.send(events);
 });
 
 //Update events in database owned by same user
-router.post('/update', verify, async (req, res) => {
+router.post('/update/:_userName/:_id', verify, async (req, res) => {
   res.send('Have not implemented yet!');
 });
 
 //Delete event from database owned by same user
-router.post('/delete', verify, upload.single('image'), async (req, res) => {
+router.post('/delete/:_userName/:_id', verify, upload.single('image'), async (req, res) => {
   res.send('Have not implemented yet!');
 });
 
