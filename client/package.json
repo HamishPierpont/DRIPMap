@@ -8,6 +8,7 @@
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
     "date-fns": "^2.16.1",
+    "form-data": "^3.0.0",
     "google-maps-react": "^2.0.6",
     "i": "^0.3.6",
     "react": "^16.14.0",
