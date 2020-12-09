@@ -45,8 +45,8 @@
 .class
 {
     position: absolute;
-    top: 330px;
-    right: 428px;
+    top: 495px;
+    right: 430px;
     margin-left: 170px;
     width: 50vw;
     border-radius: 8px;
@@ -54,9 +54,44 @@
 }
 
 .mapClass{
-    margin-left: 70px;
+    position: relative;
+    margin-top: 25px;
+    margin-left: 43vh;
 }
 
 .buttonClass{
-    padding-top: 40px;
+    position: absolute;
+    margin-top: 7px;
+    margin-left: 915px;
+}
+
+.option1{
+    position: absolute;
+    color:white;
+    margin-left: 437px;
+    margin-top: -29px;
+}
+
+.option2{
+    color:white;
+    margin-left: 437px;
+    margin-top: -29px;
+}
+
+.option3{
+    color:white;
+    margin-left: 437px;
+    margin-top: -29px;
+}
+
+.option4{
+    color:white;
+    margin-left: 437px;
+    margin-top: -29px;
+}
+
+.option5{
+    color: white;
+    margin-left: 437px;
+    margin-top: -29px;
 }
