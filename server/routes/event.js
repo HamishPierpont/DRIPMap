@@ -11,6 +11,7 @@ const upload = multer();
 router.post('/create', verify, upload.single('image'), async (req, res) => {
   
   //Validate data first!
+  console.log(req.body);
   const {buffer, size, mimeType, ...unused} = req.file;
   const image = {buffer, size, mimeType};
   console.log(Object.assign(req.body, image));
