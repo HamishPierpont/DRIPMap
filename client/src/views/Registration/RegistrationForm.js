@@ -4,14 +4,14 @@ import axios from 'axios';
 import './RegistrationForm.css';
 import { ACCESS_TOKEN_NAME, API_BASE_URL } from '../../shared/apiConstants';
 import { withRouter } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
-
 
 function RegistrationForm(props) {
 
 
     const [state, setState] = useState({
-        name: "",
+        first_name: "",
+        last_name: "",
+        user_name: "",
         email: "",
         password: ""
     })
@@ -28,9 +28,10 @@ function RegistrationForm(props) {
     const sendDetailsToServer = () => {
 
         if (state.email.length && state.password.length) {
-            //props.showError(null);
             const payload = {
-                "name": state.name,
+                "firstName": state.first_name,
+                "lastName": state.last_name,
+                "userName": state.user_name,
                 "email": state.email,
                 "password": state.password,
             }
@@ -38,15 +39,14 @@ function RegistrationForm(props) {
                 .then(function (response) {
                     if (response.status === 200) {
                         localStorage.setItem(ACCESS_TOKEN_NAME, response.data.token)
+                        localStorage.setItem("username", response.data.token) 
                         setState(prevState => ({
                             ...prevState,
                             'successMessage': 'Registration successful. Redirecting to home page..'
                         }))
                         props.history.push('/Home');
                         alert.show("Success")
-                        //props.showError(null)
                     } else {
-                        //props.showError("Some error ocurred");
                         alert.show("Some error occured")
                     }
                 })
@@ -55,8 +55,6 @@ function RegistrationForm(props) {
                 });
         } else {
             alert.show('Please enter valid username and password')
-            //props.showError('Please enter valid username and password')
-            //console.log("Please enter a valid username and password")
         }
 
     }
@@ -65,9 +63,12 @@ function RegistrationForm(props) {
         if (state.password === state.confirmPassword) {
             sendDetailsToServer()
         } else {
-            //props.showError("Passwords do not match");
             alert.show('Passwords do not match');
         }
+    }
+
+    const redirectToLogin = () => {
+        props.history.push('/user/login');
     }
 
     return (
@@ -77,14 +78,37 @@ function RegistrationForm(props) {
                 <h1 className="header">Registration</h1>
                 <br></br>
                 <div className="form-group text-left">
-                    <label className="bodyWords1" htmlFor="nameInput">Name: </label>
+                    <label className="bodyWords2" htmlFor="firstNameInput">First name: </label>
                     <input type="text"
                         className="formChanger1"
-                        id="name"
-                        placeholder="John Doe"
-                        value={state.name}
+                        id="first_name"
+                        placeholder="John"
+                        value={state.first_name}
                         onChange={handleChange}
                     />
+                              <br></br> 
+                </div>
+                <div className="form-group text-left">
+                    <label className="bodyWords2" htmlFor="lastNameInput">Last name: </label>
+                    <input type="text"
+                        className="formChanger1"
+                        id="last_name"
+                        placeholder="Doe"
+                        value={state.last_name}
+                        onChange={handleChange}
+                    />
+                              <br></br> 
+                </div>
+                <div className="form-group text-left">
+                    <label className="bodyWords2" htmlFor="userNameInput">Username: </label>
+                    <input type="text"
+                        className="formChanger1"
+                        id="user_name"
+                        placeholder="JohnDoe321"
+                        value={state.user_name}
+                        onChange={handleChange}
+                    />
+                              <br></br> 
                 </div>
                 <div className="form-group text-left">
                     <label className="bodyWords2" htmlFor="exampleInputEmail1">Email address*: </label>
@@ -128,9 +152,11 @@ function RegistrationForm(props) {
                     type="submit"
                     className="btn btn-primary"
                     onClick={handleSubmitClick}
-                >
-                    Register
-                </button>
+                > Register</button>
+                 <div className="registerMessage">
+                <div className="messageText">Already have an account? </div>
+                <span className="loginText" onClick={() => redirectToLogin()}>Login</span>
+            </div>
             </form>
         </div>
     )

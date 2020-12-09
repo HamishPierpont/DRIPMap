@@ -29,21 +29,18 @@ function LoginForm(props) {
         axios.post(API_BASE_URL + '/user/login', payload)
             .then(function (response) {
                 if (response.status === 200) {
-                    console.log(response);
                     localStorage.setItem(ACCESS_TOKEN_NAME, response.data.token)
+                    localStorage.setItem("username", response.data.token) 
                     setState(prevState => ({
                         ...prevState,
                         'successMessage': 'Login successful. Redirecting to home page..'
                     }))
                     redirectToHome();
-                    //props.showError(null)
                 }
                 else if (response.status === 204) {
-                    //props.showError("Username and password do not match");
                     alert.show("Username and password do not match");
                 }
                 else {
-                    // props.showError("Username does not exists");
                     alert.show("Username does not exists");
                 }
             })
@@ -60,13 +57,13 @@ function LoginForm(props) {
     }
     return (
         <div className="app">
-            <form className="formContainer" style={{backgroundColor: "#282c34"}}>
+            <form className="formContainer" style={{ backgroundColor: "#282c34" }}>
                 <br></br>
                 <h1 className="header">Log In</h1>
                 <br></br>
                 <br></br>
                 <div className="form-group text-left">
-                <label className="bodyWordsAgain1" htmlFor="nameInput">Email Address*: </label>
+                    <label className="bodyWordsAgain1" htmlFor="nameInput">Email Address*: </label>
                     <input type="email"
                         className="formChangerAgain1"
                         id="email"
@@ -75,10 +72,10 @@ function LoginForm(props) {
                         value={state.email}
                         onChange={handleChange}
                     />
-                    
+
                 </div>
                 <div className="form-group text-left">
-                <label className="bodyWordsAgain2" htmlFor="exampleInputEmail1">Password: </label>
+                    <label className="bodyWordsAgain2" htmlFor="exampleInputEmail1">Password: </label>
                     <input type="password"
                         className="formChangerAgain2"
                         id="password"

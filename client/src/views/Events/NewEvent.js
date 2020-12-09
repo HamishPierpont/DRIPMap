@@ -7,8 +7,7 @@ import "./NewEvent.css"
 import {
   GoogleMap,
   useLoadScript,
-  Marker,
-  InfoWindow
+  Marker
 } from "@react-google-maps/api";
 
 import {
@@ -49,10 +48,9 @@ function NewEvent({ props }) {
   const [state, setState] = React.useState({
     title: "",
     description: "",
-    value : "",
-    creator: "",
+    typeOfDisaster: "",
     image: null,
-    imagePreviewUrl: null
+    imagePreviewUrl: null, 
   })
 
   const handleChange = (e) => {
@@ -66,26 +64,20 @@ function NewEvent({ props }) {
  
   const sendDetailsToServer = () => {
 
-    const payload = {
-      "location": selected,
-     // "user": state.creator, //might have to do a get
-      "title": state.title,
-      "description": state.description,
-      "image": state.image,
-    }
-    
-    console.log("Person has submitted " , payload);
-    return; //
-
-    if (state.location.length && state.title.length ) {
-      //props.showError(null);
+    if (state.selected.length && state.title.length && state.typeOfDisaster.length && state.userName.length ) {
+      
       const payload = {
-        "location": state.selected,
-        "user": state.creator, //might have to do a get
         "title": state.title,
         "description": state.description,
-        "images": state.images,
+        "typeOfDisaster": state.typeOfDisaster, 
+        "userName":  localStorage.getItem("username"),
+        "location": selected,
+        "date" : new Date(),
+        "image": state.image,
       }
+      
+      console.log("Person has submitted " , payload);
+
       axios.post(API_BASE_URL + '/events/create', { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } }, payload)
         .then(function (response) {
           if (response.status === 200) {
@@ -110,11 +102,7 @@ function NewEvent({ props }) {
 
   const handleSubmitClick = (e) => {
     e.preventDefault();
-    if (true) {
-      sendDetailsToServer()
-    } else {
-      console.log("Form not valid");
-    }
+    sendDetailsToServer();
   }
 
 
@@ -242,6 +230,70 @@ function NewEvent({ props }) {
                 onChange={handleChange}
               />
             </div>
+        <div className="form-group text-left">
+        <label className="bw1" htmlFor="nameInput">Type of Disaster:</label>
+        <div style={{ marginLeft: '80px' }}>
+          <div className="radio">
+          <label className="bw1">
+            <input
+              type="radio"
+              id="typeOfDisaster"
+              value="Earthquake"
+              checked={state.typeOfDisaster === "Earthquake"}
+              onChange={handleChange}
+            />
+            Earthquake
+          </label>
+        </div>
+        <div className="radio">
+          <label className="bw1">
+            <input
+              type="radio"
+              id="typeOfDisaster"
+              value="Fire"
+              checked={state.typeOfDisaster === "Fire"}
+              onChange={handleChange}
+            />
+            Fire
+          </label>
+        </div>
+        <div className="radio">
+          <label className="bw1">
+            <input
+              type="radio"
+              id="typeOfDisaster"
+              value="Flooding"
+              checked={state.typeOfDisaster === "Flooding"}
+              onChange={handleChange}
+            />
+            Flooding
+          </label>
+        </div>
+        <div className="radio">
+          <label className="bw1">
+            <input
+              type="radio"
+              id="typeOfDisaster"
+              value="Hurricane"
+              checked={state.typeOfDisaster === "Hurricane"}
+              onChange={handleChange}
+            />
+            Hurricane
+          </label>
+        </div>
+        <div className="radio">
+          <label className="bw1">
+            <input
+              type="radio"
+              id="typeOfDisaster"
+              value="Tornado"
+              checked={state.typeOfDisaster === "Tornado"}
+              onChange={handleChange}
+            />
+            Tornado
+          </label>
+        </div>
+        </div>
             <div className="form-group text-left">
               <label className="bw2" htmlFor="InputDescription">Description:</label>
               <input type="textarea"
@@ -252,6 +304,7 @@ function NewEvent({ props }) {
                 value={state.description}
                 onChange={handleChange}
               />
+            </div>
             </div>
             <div className="form-group text-left">
               <label className="bw3" htmlFor="FileInput">Image:</label>
@@ -289,9 +342,7 @@ function NewEvent({ props }) {
               type="submit"
               className="btn btn-primary"
               onClick={handleSubmitClick}
-              >
-                  Submit
-              </button>
+              >Submit</button>
                 
                 </center>
                 </div>

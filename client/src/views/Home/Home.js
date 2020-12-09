@@ -48,74 +48,6 @@ const center = {
   lng: -82.3248
 };
 
-//To Do: Add datetime to all events. Add images for all events.
-const temporaryEvents = [
-  {
-    title: "Event One",
-    location: {
-      lat: 41.3954,
-      lng: 2.162
-    },
-    description: "Event one short description.",
-    user: "userOne"
-  },
-  {
-    title: "Event Two",
-    location: {
-      lat: 41.3917,
-      lng: 2.1649
-    },
-    description: "Event two short description.",
-    user: "userTwo"
-  },
-  {
-    title: "Event Three",
-    location: {
-      lat: 29.6494055,
-      lng: -82.3511235
-    },
-    description: "Event three short description.",
-    user: "userThree"
-  },
-  {
-    title: "Event Four",
-    location: {
-      lat: 25.7777193,
-      lng: -80.1908501
-    },
-    description: "Event four short description.",
-    user: "userFour"
-  },
-  {
-    title: "Event Five",
-    location: {
-      lat: 29.6482276313464,
-      lng: -82.3458230495453
-    },
-    description: "Event five short description.",
-    user: "userFive"
-  },
-  {
-    title: "Event Six",
-    location: {
-      lat: 25.462827,
-      lng: -80.4843201
-    },
-    description: "Event six short description.",
-    user: "userSix"
-  },
-  {
-    title: "Event Seven",
-    location: {
-      lat: 25.468721,
-      lng: -80.477554
-    },
-    description: "Event six short description.",
-    user: "userFive"
-  }
-];
-
-
 
 function MapContainer(props) {
 
@@ -129,24 +61,22 @@ function MapContainer(props) {
   const [selected, setSelected] = React.useState(null);
 
   useEffect(() => {
-    
-    //Temporary:
-    setEvents(temporaryEvents);
 
-    //To Do: Axios call to get all events. 
-    /* axios.get(API_BASE_URL + '/events/all')
-            .then(function (response) {
-                if (response.status === 200) {
-                    setEvents(response.date.events);
-                }
-                else {
-                   alert.show("Error retrieving events, please try again.");
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    */
+    axios.get(API_BASE_URL + '/event/read')
+      .then(function (response) {
+        console.log(response);
+        if (response.status === 200) {
+          console.log(events); 
+          setEvents(response.date.events);
+        }
+        else {
+          alert.show("Error retrieving events, please try again.");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
   });
 
   const onSelectEvent = async (event) => {
@@ -173,7 +103,7 @@ function MapContainer(props) {
     <div>
 
       <div style={{ flex: 1, flexDirection: 'row' }}>
-        <Search panTo={panTo}/>
+        <Search panTo={panTo} />
       </div>
 
       <div style={{ flex: 1, flexDirection: 'row' }}>
@@ -206,10 +136,12 @@ function MapContainer(props) {
                 onCloseClick={() => setSelected(null)}
               >
                 <div>
-                  <h1>{selected.title}</h1>
-                  <p>{selected.description}</p>
-                  <p>Host: {selected.user}</p>
-                  <img style={{ width: 40, height: 30, backgroundColor: 'skyblue' }} src="/fire.jpg" alt="currentLocationMarker" />
+                  <h1>Title: {selected.title}</h1>
+                  <h1>Type: {selected.typeOfDisaster}</h1>
+                  <p>Description: {selected.description}</p>
+                  <p>Host: {selected.userName}</p>
+                  <p>Created: {selected.date}</p>
+                  <img style={{ width: 40, height: 30, backgroundColor: 'skyblue' }} src={selected.image} alt="currentLocationMarker" />
                 </div>
               </InfoWindow>
             ) : null}
@@ -247,8 +179,8 @@ function Search({ panTo }) {
   };
 
   return (
-    <div style={{border: "5px #282c34"}}>
-      <div className="search" style={{backgroundColor: "#282c34", paddingTop: 25}}>
+    <div style={{ border: "5px #282c34" }}>
+      <div className="search" style={{ backgroundColor: "#282c34", paddingTop: 25 }}>
         <Combobox onSelect={handleSelect}>
 
           <div style={{ marginLeft: 600 }}>
@@ -260,8 +192,6 @@ function Search({ panTo }) {
               placeholder="Search a location">
             </ComboboxInput>
 
-            {//TO DO: Updated Button Styling, Maybe add an icon 
-            }
             <button style={{ marginLeft: 10, height: 40 }}
               className="currentLocation"
               onClick={() => {
@@ -278,9 +208,9 @@ function Search({ panTo }) {
             >Show Current Location
       </button>
             <div style={{}}>
-              {localStorage.getItem(ACCESS_TOKEN_NAME) ? 
-                <li style={{listStyleType: 'none', marginLeft: 250}} class="nav-item active"><a class="nav-link" href="/events/new">Create a new event? <span class="sr-only"></span></a></li>
-              : <li style={{listStyleType: 'none', marginLeft: 200}} class="nav-item active"><a class="nav-link" href="/user/login">Please login to create a new event<span class="sr-only"></span></a></li>
+              {localStorage.getItem(ACCESS_TOKEN_NAME) ?
+                <li style={{ listStyleType: 'none', marginLeft: 250 }} class="nav-item active"><a class="nav-link" href="/events/new">Create a new event? <span class="sr-only"></span></a></li>
+                : <li style={{ listStyleType: 'none', marginLeft: 200 }} class="nav-item active"><a class="nav-link" href="/user/login">Please login to create a new event<span class="sr-only"></span></a></li>
               }
             </div>
           </div>
