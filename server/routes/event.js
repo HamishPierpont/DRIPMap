@@ -36,4 +36,17 @@ router.post('/create', verify, upload.single('image'), async (req, res) => {
 
 });
 
+//Read all events from the database
+router.get('/read', async (req, res) => {
+  const events = await formData.find({});
+  console.log(events);
+  res.send(events);
+});
+
+//Read events from database by userId
+router.get('/read/:userId', verify, async (req, res) => {
+ res.send('Have not implemented yet!'); 
+});
+
+
 module.exports = router;
