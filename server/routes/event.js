@@ -45,8 +45,17 @@ router.get('/read', async (req, res) => {
 
 //Read events from database by userId
 router.get('/read/:userId', verify, async (req, res) => {
- res.send('Have not implemented yet!'); 
+  res.send('Have not implemented yet!'); 
 });
 
+//Update events in database owned by same user
+router.post('/update', verify, async (req, res) => {
+  res.send('Have not implemented yet!');
+});
+
+//Delete event from database owned by same user
+router.post('/delete', verify, upload.single('image'), async (req, res) => {
+  res.send('Have not implemented yet!');
+});
 
 module.exports = router;
