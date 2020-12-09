@@ -83,10 +83,16 @@ router.post('/login', async (req, res) => {
 });
 
 //Update user information
-router.post('/update/:_userName', verify, async (req, res) => {});
+router.post('/update/:_userName', verify, async (req, res) => {
+  const result = await User.update({userName: _userName}, req.body);
+  res.send(result);
+});
 
 //Delete user from db
-router.post('/delete/:_userName', verify, async (req, res) => {});
+router.post('/delete/:_userName', verify, async (req, res) => {
+  const result = await User.deleteOne({userName: _userName});
+  res.send(result);
+});
 
 /**
  * @method - GET
