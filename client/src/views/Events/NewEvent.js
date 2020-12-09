@@ -151,7 +151,6 @@ function NewEvent({ props }) {
     } = usePlacesAutocomplete({
       requestOptions: {},
       debounce: 300,
-      defaultValue:  "Search for a Location"
     });
 
     const handleInput = (e) => {
@@ -186,6 +185,7 @@ function NewEvent({ props }) {
             value={value}
             onChange={handleInput}
             disabled={!ready}
+            placeholder="Search for a location"
           />
           <ComboboxPopover>
             <ComboboxList>
