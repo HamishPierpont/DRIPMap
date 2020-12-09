@@ -211,7 +211,7 @@ function Donate() {
               <p className="orgs2">
                 <p className="linkHead">
                   <a
-                    href="https://www.redcross.org/about-us/our-work/disaster-relief/wildfire-relief.html"
+                    href="https://venmo.com/"
                     target="_blank"
                     className="linkText"
                   >

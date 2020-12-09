@@ -247,52 +247,54 @@ function Search({ panTo }) {
   };
 
   return (
-    <div className="search" style={{ margin: 10, marginTop: 40, marginBottom: 40 }} >
-      <Combobox onSelect={handleSelect}>
+    <div style={{border: "5px #282c34"}}>
+      <div className="search" style={{backgroundColor: "#282c34", paddingTop: 25}}>
+        <Combobox onSelect={handleSelect}>
 
-        <div style={{ marginLeft: 200 }}>
+          <div style={{ marginLeft: 600 }}>
 
-          <ComboboxInput style={{ width: 500, height: 40 }}
-            value={value}
-            onChange={handleInput}
-            disabled={!ready}
-            placeholder="Search a location">
-          </ComboboxInput>
+            <ComboboxInput style={{ width: 500, height: 40 }}
+              value={value}
+              onChange={handleInput}
+              disabled={!ready}
+              placeholder="Search a location">
+            </ComboboxInput>
 
-          {//TO DO: Updated Button Styling, Maybe add an icon 
-          }
-          <button style={{ marginLeft: 10, height: 40 }}
-            className="currentLocation"
-            onClick={() => {
-              navigator.geolocation.getCurrentPosition(
-                (position) => {
-                  panTo({
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                  });
-                },
-                () => null
-              );
-            }}
-          >Show Current Location
-    </button>
-          <div style={{marginLeft: 250 }}>
-            {localStorage.getItem(ACCESS_TOKEN_NAME) ? 
-              (<li style={{listStyleType: 'none'}} class="nav-item active"><a class="nav-link" href="/events/new">Create a new event? <span class="sr-only"></span></a></li>) 
-            : (<li style={{listStyleType: 'none'}} class="nav-item active"><a class="nav-link" href="/user/login">Please login to create a new event.<span class="sr-only"></span></a></li>)
+            {//TO DO: Updated Button Styling, Maybe add an icon 
             }
+            <button style={{ marginLeft: 10, height: 40 }}
+              className="currentLocation"
+              onClick={() => {
+                navigator.geolocation.getCurrentPosition(
+                  (position) => {
+                    panTo({
+                      lat: position.coords.latitude,
+                      lng: position.coords.longitude,
+                    });
+                  },
+                  () => null
+                );
+              }}
+            >Show Current Location
+      </button>
+            <div style={{}}>
+              {localStorage.getItem(ACCESS_TOKEN_NAME) ? 
+                <li style={{listStyleType: 'none', marginLeft: 250}} class="nav-item active"><a class="nav-link" href="/events/new">Create a new event? <span class="sr-only"></span></a></li>
+              : <li style={{listStyleType: 'none', marginLeft: 200}} class="nav-item active"><a class="nav-link" href="/user/login">Please login to create a new event<span class="sr-only"></span></a></li>
+              }
+            </div>
           </div>
-        </div>
-        <ComboboxPopover>
-          <ComboboxList>
-            {status === "OK" &&
-              data.map(({ id, description }) => (
-                <ComboboxOption key={id} value={description} />
-              ))}
-          </ComboboxList>
-        </ComboboxPopover>
-      </Combobox>
-    </div >
+          <ComboboxPopover>
+            <ComboboxList>
+              {status === "OK" &&
+                data.map(({ id, description }) => (
+                  <ComboboxOption key={id} value={description} />
+                ))}
+            </ComboboxList>
+          </ComboboxPopover>
+        </Combobox>
+      </div>
+    </div>
   );
 }
 

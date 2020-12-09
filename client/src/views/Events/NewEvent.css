@@ -1,0 +1,62 @@
+.title{
+    color: white;
+}
+
+.bw1{
+    color: white;
+    float: center;
+    margin-left: 300px;
+}
+
+.bw2{
+    color: white;
+    float: center;
+    margin-left: 300px;
+}
+
+.bw3{
+    color: White;
+    float: center;
+    margin-left: 300px;
+}
+
+.fc1{
+    margin-left: 140px;
+    width: 50vw;
+    border-radius: 8px;
+    height: 39px;
+}
+
+.fc2{
+    margin-left: 132px;
+    width: 50vw;
+    border-radius: 8px;
+    height: 39px;
+}
+
+.fc3{
+    margin-left: 170px;
+    width: 50vw;
+    border-radius: 8px;
+    height: 39px;
+    color: white;
+}
+
+.class
+{
+    position: absolute;
+    top: 330px;
+    right: 428px;
+    margin-left: 170px;
+    width: 50vw;
+    border-radius: 8px;
+    height: 39px;
+}
+
+.mapClass{
+    margin-left: 70px;
+}
+
+.buttonClass{
+    padding-top: 40px;
+}

@@ -8,3 +8,71 @@
     color: green;
     font-weight: bold;
 }
+
+.app {
+    height: 100vh;
+    text-align: center;
+    background: #282c34;
+}
+
+.header{
+    color: white;
+}
+
+.bodyWords1{
+    color: white;
+    float: center;
+    margin-left: 300px;
+}
+
+.formChanger1{
+    margin-left: 150px;
+    width: 50vw;
+    border-radius: 8px;
+    height: 39px;
+}
+
+.bodyWords2{
+    color: white;
+    float: center;
+    margin-left: 300px;
+}
+
+.formChanger2{
+    margin-left: 89px;
+    width: 50vw;
+    border-radius: 8px;
+    height: 39px;
+}
+
+.bodyWords3{
+    color: white;
+    float: center;
+    margin-left: 300px;
+}
+
+.formChanger3{
+    margin-left: 119px;
+    width: 50vw;
+    border-radius: 8px;
+    height: 39px;
+}
+
+.bodyWords4{
+    color: white;
+    float: center;
+    margin-left: 300px;
+}
+
+.formChanger4{
+    margin-left: 65px;
+    width: 50vw;
+    border-radius: 8px;
+    height: 39px;
+}
+
+.specialText{
+    color: white;
+    float: center;
+}
+
