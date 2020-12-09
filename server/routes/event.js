@@ -36,4 +36,26 @@ router.post('/create', verify, upload.single('image'), async (req, res) => {
 
 });
 
+//Read all events from the database
+router.get('/read', async (req, res) => {
+  const events = await formData.find({});
+  console.log(events);
+  res.send(events);
+});
+
+//Read events from database by userId
+router.get('/read/:userId', verify, async (req, res) => {
+  res.send('Have not implemented yet!'); 
+});
+
+//Update events in database owned by same user
+router.post('/update', verify, async (req, res) => {
+  res.send('Have not implemented yet!');
+});
+
+//Delete event from database owned by same user
+router.post('/delete', verify, upload.single('image'), async (req, res) => {
+  res.send('Have not implemented yet!');
+});
+
 module.exports = router;
