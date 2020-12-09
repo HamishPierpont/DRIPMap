@@ -30,8 +30,8 @@ const createEventValidation = (data) => {
         lat: Joi.number().required(),
         lng: Joi.number().required()
     },
-    startDate: Joi.date().required(),
-    endDate: Joi.date().required(),
+    userName: Joi.string().min(1).required(),
+    date: Joi.date().required(),
     image: {
         size: Joi.number().integer().required(),
         buffer: Joi.binary().required(),
