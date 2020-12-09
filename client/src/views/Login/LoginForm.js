@@ -96,7 +96,7 @@ function LoginForm(props) {
                     type="submit"
                     className="btn btn-primary"
                     onClick={handleSubmitClick}
-                >Login</button>
+                >Log In</button>
             </form>
             <div className="alert alert-success mt-2" style={{ display: state.successMessage ? 'block' : 'none' }} role="alert">
                 {state.successMessage}
