@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAlert } from 'react-alert'
 import { ACCESS_TOKEN_NAME, API_BASE_URL } from '../../shared/apiConstants';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
@@ -43,6 +44,7 @@ const center = {
 
 function NewEvent({ props }) {
 
+  const alert = useAlert();
   const [selected, setSelected] = React.useState(null);
   const [input, setInput] = React.useState(null);
 
@@ -65,7 +67,7 @@ function NewEvent({ props }) {
  
   const sendDetailsToServer = () => {
 
-    if (selected.length && state.title.length && state.typeOfDisaster.length ) {
+    if (selected && state.title.length && state.typeOfDisaster.length ) {
       
       const payload = {
         "title": state.title,
@@ -91,16 +93,16 @@ function NewEvent({ props }) {
               'successMessage': 'Event created successfully. Redirecting to home page..'
             }))
             props.history.push('/Home');
-            alert("Success");
+            alert.show("Success");
           } else {
-            alert("Some error occured");
+            alert.show("Some error occured");
           }
         })
         .catch(function (error) {
           console.log(error);
         });
     } else {
-      alert('Error');
+      alert.show('Error');
     }
 
   }
