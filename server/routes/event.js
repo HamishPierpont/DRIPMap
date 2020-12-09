@@ -11,9 +11,10 @@ const upload = multer();
 router.post('/create', verify, upload.single('image'), async (req, res) => {
   
   //Validate data first!
-  console.log(req.file);
-  console.log(Object.assign(req.body, {buffer: req.file.buffer}));
-  const {error} = createEventValidation(Object.assign(req.body, {buffer: req.file.buffer})); 
+  const {buffer, size, mimeType, ...unused} = req.file;
+  const image = {buffer, size, mimeType};
+  console.log(Object.assign(req.body, image));
+  const {error} = createEventValidation(Object.assign(req.body, image)); 
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
@@ -23,7 +24,10 @@ router.post('/create', verify, upload.single('image'), async (req, res) => {
     title: req.body.title,
     description: req.body.description,
     typeOfDisaster: req.body.typeOfDisaster,
-    image: req.file.buffer
+    location: req.body.location,
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
+    image: image
   });
 
   //Save form in database

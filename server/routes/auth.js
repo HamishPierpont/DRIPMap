@@ -10,6 +10,7 @@ const tokenVerification = require("./verifyToken");
 router.post('/register', async (req, res) => {
   
   //Validate data first!
+  console.log(req.body);
   const {error} = registerValidation(req.body); 
   if (error) {
     return res.status(400).send(error.details[0].message);
@@ -21,12 +22,19 @@ router.post('/register', async (req, res) => {
     return res.status(400).send('Email already exists');
   }
 
+  const usernameExists = await User.findOne({userName: req.body.userName});
+  if (usernameExists) {
+    return res.status(400).send('Username already exists');
+  }
+
   //Hash passwords
   const salt = await bcryptjs.genSalt(10);
   const hashedPassword = await bcryptjs.hash(req.body.password, salt);
 
   const user = new User({
-    name: req.body.name,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    userName: req.body.userName,
     email: req.body.email,
     password: hashedPassword 
   });
