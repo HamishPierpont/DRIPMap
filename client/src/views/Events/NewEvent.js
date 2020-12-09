@@ -86,7 +86,7 @@ function NewEvent({ props }) {
       
       console.log("Person has submitted " , payload);
 
-      axios.post(API_BASE_URL + '/event/create', { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } }, data) //payload)
+      axios.post(API_BASE_URL + '/event/create', data, { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } }) //payload)
         .then(function (response) {
           if (response.status === 200) {
             setState(prevState => ({
