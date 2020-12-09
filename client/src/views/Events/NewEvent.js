@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ACCESS_TOKEN_NAME, API_BASE_URL } from '../../shared/apiConstants';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import FormData from 'form-data';
 import "./NewEvent.css"
 
 import {
@@ -63,8 +64,9 @@ function NewEvent({ props }) {
 
  
   const sendDetailsToServer = () => {
-
-    if (state.selected.length && state.title.length && state.typeOfDisaster.length && state.userName.length ) {
+      console.log(state);
+    
+      if (state.selected.length && state.title.length && state.typeOfDisaster.length) {
       
       const payload = {
         "title": state.title,
@@ -73,12 +75,16 @@ function NewEvent({ props }) {
         "userName":  localStorage.getItem("username"),
         "location": selected,
         "date" : new Date(),
-        "image": state.image,
+        //"image": state.image,
       }
+
+      let data = new FormData();
+      data.append('file', state.image, state.image.name);
+      Object.keys(payload).forEach(key => {data.append(key, payload[key])});
       
       console.log("Person has submitted " , payload);
 
-      axios.post(API_BASE_URL + '/events/create', { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } }, payload)
+      axios.post(API_BASE_URL + '/events/create', { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } }, data) //payload)
         .then(function (response) {
           if (response.status === 200) {
             setState(prevState => ({
