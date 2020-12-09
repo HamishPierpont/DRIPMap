@@ -55,13 +55,20 @@ router.get('/read/:_userName', verify, async (req, res) => {
 });
 
 //Update events in database owned by same user
-router.post('/update/:_userName/:_id', verify, async (req, res) => {
-  res.send('Have not implemented yet!');
+router.post('/update/:_userName/:__id', verify, async (req, res) => {
+  const result = await formData.update({userName: _userName, _id: __id});
+  if (result.n > 0 && result.n == result.nModified) {
+    res.send(result);
+  }
+  else {
+    res.status(400).send(result);
+  }
 });
 
 //Delete event from database owned by same user
 router.post('/delete/:_userName/:_id', verify, upload.single('image'), async (req, res) => {
-  res.send('Have not implemented yet!');
+  const result = await formData.deleteOne({userName: _userName, _id: __id});
+  res.send(result);
 });
 
 module.exports = router;

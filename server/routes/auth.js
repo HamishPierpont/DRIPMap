@@ -53,7 +53,6 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
 
   //Validate data first!
-  console.log(req.body);
   const {error} = loginValidation(req.body); 
   if (error) {
     return res.status(400).send(error.details[0].message);
@@ -76,11 +75,12 @@ router.post('/login', async (req, res) => {
   const token = jwt.sign({user: user._id}, config.token_secret);
   //res.header('auth-token', token).send(token);
 
-module.exports = router;
   res.header('auth-token', token);
   //res.status(200).send('Logged in!');
+  //const payload = Object.assign({token},} 
   res.status(200).json({
-    token
+    token,
+    userName: user.userName
   });
 });
 
