@@ -10,8 +10,6 @@ const upload = multer();
 
 //Create new image in database if logged in
 router.post('/create', upload.single('image'), async (req, res) => {
-
-  console.log(req);
   
   //Validate data first!
   let {buffer, size, mimeType, ...unused} = req.file;

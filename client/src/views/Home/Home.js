@@ -58,6 +58,7 @@ function MapContainer(props) {
   });
 
   const [events, setEvents] = React.useState([]);
+  const [image, setImage] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
 
   useEffect(() => {
@@ -66,8 +67,7 @@ function MapContainer(props) {
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {
-          console.log(events); 
-          setEvents(response.date.events);
+          setEvents(response.data);
         }
         else {
           alert.show("Error retrieving events, please try again.");
@@ -77,9 +77,27 @@ function MapContainer(props) {
         console.log(error);
       });
 
-  });
+  }, []);
 
   const onSelectEvent = async (event) => {
+
+    await axios.get(API_BASE_URL + '/image/read', {imageId: event.imageId}, { headers: {
+      'Content-Type': 'application/json',
+  }} )
+    .then(function (response) {
+      console.log(response);
+      if (response.status === 200) {
+        console.log(response.data);
+        setImage(response.data.buffer); 
+      }
+      else {
+        alert.show("Error retrieving image.");
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
     setSelected(event);
   }
 
@@ -119,7 +137,7 @@ function MapContainer(props) {
           options={options}
           onLoad={onMapLoad}
         >
-          {events.map((event) => (
+          {events? (events.map((event) => (
             <Marker
               key={`${event.location.lat}-${event.location.lng}`}
               position={event.location}
@@ -127,7 +145,8 @@ function MapContainer(props) {
                 onSelectEvent(event);
               }}
             />
-          ))}
+           ) )) : null 
+        }
           {selected ?
             (
               <InfoWindow
@@ -141,7 +160,7 @@ function MapContainer(props) {
                   <p>Description: {selected.description}</p>
                   <p>Host: {selected.userName}</p>
                   <p>Created: {selected.date}</p>
-                  <img style={{ width: 40, height: 30, backgroundColor: 'skyblue' }} src={selected.image} alt="currentLocationMarker" />
+                  {image ? (<img style={{ width: 40, height: 30, backgroundColor: 'skyblue' }} src={image} alt="currentLocationMarker" />) : (<br></br>)}
                 </div>
               </InfoWindow>
             ) : null}

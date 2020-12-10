@@ -104,9 +104,8 @@ function NewEvent({ props }) {
         "date" : new Date(), 
         "imageId": imageId
       }
-      console.log(payload);
       
-      axios.post(API_BASE_URL + '/event/create', data, { headers: {'auth-token': token} }) //payload)
+      axios.post(API_BASE_URL + '/event/create', payload, { headers: {'auth-token': token} })
 
         .then(function (response) {
           if (response.status === 200) {
@@ -114,7 +113,7 @@ function NewEvent({ props }) {
               ...prevState,
               'successMessage': 'Event created successfully. Redirecting to home page..'
             }))
-            props.history.push('/Home');
+            redirectToHome();
             alert.show("Success");
           } else {
             alert.show("Some error occured");
@@ -128,6 +127,10 @@ function NewEvent({ props }) {
     }
 
   }
+
+  const redirectToHome = async () =>{
+    props.history.push('/home');
+}
 
   const handleSubmitClick = (e) => {
     e.preventDefault();
@@ -229,24 +232,6 @@ function NewEvent({ props }) {
           ...prevState,
           ["image"]:  e.target.files[0]
     }));
-
-    // e.preventDefault();
-    // let reader = new FileReader();
-    // let file = e.target.files[0];
-
-    // reader.onloadend = () => {
-    //     setState(prevState => ({
-    //       ...prevState,
-    //       ["image"]: file
-    //     }));
-
-    //     setState(prevState => ({
-    //       ...prevState,
-    //       ["imagePreviewUrl"]: reader.result
-    //     }));
-    // }
-
-    // reader.readAsDataURL(file);
   };
 
   
