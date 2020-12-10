@@ -20,38 +20,52 @@ function LoginForm(props) {
     }
     const alert = useAlert();
 
-    const handleSubmitClick = (e) => {
+ 
+    function timeout(delay) {
+        return new Promise( res => setTimeout(res, delay) );
+    }
+
+    const handleSubmitClick = async (e) => {
         e.preventDefault();
         const payload = {
             "email": state.email,
             "password": state.password,
         }
-        axios.post(API_BASE_URL + '/user/login', payload)
-            .then(function (response) {
-                if (response.status === 200) {
-                    localStorage.setItem(ACCESS_TOKEN_NAME, response.data.token)
-                    localStorage.setItem("username", response.data.token) 
-                    setState(prevState => ({
-                        ...prevState,
-                        'successMessage': 'Login successful. Redirecting to home page..'
-                    }))
-                    redirectToHome();
-                }
-                else if (response.status === 204) {
-                    alert.show("Username and password do not match");
-                }
-                else {
-                    alert.show("Username does not exists");
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-    const redirectToHome = () => {
+
+
+        await Promise.allSettled([Promise.resolve(axios.post(API_BASE_URL + '/user/login', payload))
+        ]).then(axios.spread((loginResponse) => {
+            if (loginResponse.value.status === 200) {
+               
+                localStorage.setItem(ACCESS_TOKEN_NAME, loginResponse.value.data.token)
+                localStorage.setItem("username", loginResponse.value.data.userName)
+                setState(prevState => ({
+                    ...prevState,
+                    'successMessage': 'Login successful. Redirecting to home page..'
+                }))
+                redirectToHome();
+            }
+            else if (loginResponse.value.status === 204) {
+                alert.show("Username and password do not match");
+            }
+            else {
+                alert.show("Username does not exists");
+            }
+        })).catch(function (error) {
+            console.log(error);
+            alert.show("Login error, please try again.");
+        });
+        
+    };
+
+
+
+
+    const redirectToHome = async () =>{
         props.history.push('/home');
         window.location.reload(false); //Refresh to update the nav bar
     }
+
     const redirectToRegister = () => {
         props.history.push('/user/register');
     }

@@ -89,10 +89,11 @@ router.post('/login', async (req, res) => {
  * @description - Get LoggedIn User
  * @param - /user/me
  */
-router.get("/me", tokenVerification, async (req, res) => {
+router.get("/:_userName", tokenVerification, async (req, res) => {
   try {
     // request.user is getting fetched from Middleware after token authentication
-    const user = await User.findOne(req.user.email);
+    const user = await User.findOne({userName: req.params._userName});
+    console.log(user);
     res.json({user: user});
   } catch (e) {
     res.send({ message: "Error in Fetching user" });

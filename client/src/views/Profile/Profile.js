@@ -69,11 +69,11 @@ function Profile(props) {
 
   const alert = useAlert();
 
-  useEffect(() => {
+  useEffect( async () => {
 
-    Promise.allSettled([
-      Promise.resolve(axios.get(API_BASE_URL + '/user/me', { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } })),
-      Promise.resolve(axios.get(API_BASE_URL + '/event/read', new URLSearchParams([['_userName', localStorage.getItem('username')]]), { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } }))
+    await Promise.allSettled([
+      Promise.resolve(axios.get(API_BASE_URL + '/user/'+ localStorage.getItem('username'), { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } })),
+      Promise.resolve(axios.get(API_BASE_URL + '/event/read/'+ localStorage.getItem('username'), { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } }))
     ]).then(axios.spread ((userResponse, eventsResponse)=> {
 
       if (userResponse.value.status !== 200) {
@@ -112,11 +112,11 @@ function Profile(props) {
   return (
     <div className="App">
       <header className="App-header">
-      {state.currentUser.name && (
+      {state.currentUser.firstName && (
           <p> Welcome  {state.currentUser.userName} ! </p>)} 
      </header>
       <div>
-        {state.currentUser.name && 
+        {state.currentUser.firstName && 
         (<div>
           <p className="App-Text">First name: {state.currentUser.lastName} </p>
           <br></br>
