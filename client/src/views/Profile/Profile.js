@@ -73,7 +73,7 @@ function Profile(props) {
 
     Promise.allSettled([
       Promise.resolve(axios.get(API_BASE_URL + '/user/me', { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } })),
-      Promise.resolve(axios.get(API_BASE_URL + '/event/read/', new URLSearchParams([['_userName', localStorage.getItem('username')]]), { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } }))
+      Promise.resolve(axios.get(API_BASE_URL + '/event/read', new URLSearchParams([['_userName', localStorage.getItem('username')]]), { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } }))
     ]).then(axios.spread ((userResponse, eventsResponse)=> {
 
       if (userResponse.value.status !== 200) {
