@@ -89,6 +89,7 @@ function NewEvent({ props }) {
       console.log(token);
 
       axios.post(API_BASE_URL + '/event/create', { headers: {'auth-token': token} }, data) //payload)
+
         .then(function (response) {
           if (response.status === 200) {
             setState(prevState => ({
