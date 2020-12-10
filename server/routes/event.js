@@ -7,6 +7,7 @@ const verify = require('./verifyToken');
 router.post('/create', verify, async (req, res) => {
   
   //Validate data first!
+  console.log(req.body);
   const {error} = createEventValidation(req.body); 
   if (error) {
     return res.status(400).send(error.details[0].message);
@@ -20,7 +21,7 @@ router.post('/create', verify, async (req, res) => {
     location: req.body.location,
     date: req.body.date,
     userName: req.body.userName,
-    imageId: req.body.imageId
+    imageURL: req.body.imageURL
   });
 
   //Save form in database
