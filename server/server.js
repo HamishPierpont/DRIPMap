@@ -5,7 +5,8 @@ mongoose = require('mongoose'),
 morgan = require('morgan'),
 bodyParser = require('body-parser'),
 authRouter = require('./routes/auth'),
-eventRouter = require('./routes/event');
+eventRouter = require('./routes/event'),
+imageRouter = require('./routes/image');
 
 mongoose.connect(process.env.DB_URI || require('./config/config').db.uri, {
     useNewUrlParser: true,
@@ -31,6 +32,9 @@ app.use('/api/user', authRouter);
 
 // Router for event CRUD operations
 app.use('/api/event', eventRouter);
+
+// Router for image creation and reading
+app.use('/api/image', imageRouter);
 
 // Serve any static files TODO: separate prod & dev environments
 app.use(express.static(path.join(__dirname, '../../client/build')));
