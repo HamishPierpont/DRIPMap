@@ -30,18 +30,9 @@ const formDataModel = new mongoose.Schema({
         type: Date,
         required: true
     },
-    image: {
-        buffer: {
-            type: Buffer,
-            required: true
-        },
-        size: {
-            type: Number,
-            required: true
-	},
-        mimeType: {
-            type: String
-	}
+    imageId: {
+        type: String,
+        required: true
     }
 });
 
