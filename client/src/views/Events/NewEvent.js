@@ -85,8 +85,11 @@ function NewEvent({ props }) {
       Object.keys(payload).forEach(key => {data.append(key, payload[key])});
       
       console.log("Person has submitted " , payload);
+      let token = localStorage.getItem(ACCESS_TOKEN_NAME);
+      console.log(token);
 
-      axios.post(API_BASE_URL + '/event/create', data, { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } }) //payload)
+      axios.post(API_BASE_URL + '/event/create', { headers: {'auth-token': token} }, data) //payload)
+
         .then(function (response) {
           if (response.status === 200) {
             setState(prevState => ({
