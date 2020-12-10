@@ -65,30 +65,51 @@ function NewEvent({ props }) {
   }
 
  
-  const sendDetailsToServer = () => {
+  const sendDetailsToServer = async () => {
 
     if (selected && state.title.length && state.typeOfDisaster.length ) {
       
+      let data = new FormData();
+      console.log(state.image);
+      data.append('file', state.image, state.image.name);
+
+      const imageId = null;
+      //Object.keys(payload).forEach(key => {data.append(key, payload[key])});
+
+      console.log(data);
+      
+    await Promise.allSettled([
+      Promise.resolve(axios.post(API_BASE_URL + '/image/create', data)),
+    ]).then(axios.spread ((imageResponse)=> {
+      console.log(imageResponse);
+
+      if (imageResponse.value.status === 200) {
+        imageId =imageResponse.value.data.imageId;
+      }
+      else{
+        alert.show("Error");
+      }
+    }))
+    .catch(function (error) {
+      alert.show("Error");
+      console.log(error); 
+    });
+      
+     
+
+      let token = localStorage.getItem(ACCESS_TOKEN_NAME);
       const payload = {
         "title": state.title,
         "description": state.description,
         "typeOfDisaster": state.typeOfDisaster, 
         "userName":  localStorage.getItem("username"),
         "location": selected,
-        "date" : new Date()
+        "date" : new Date().toISOString(), 
+        "imageId": imageId
       }
 
-      console.log(payload);
-
-      let data = new FormData();
-      data.append('file', state.image, state.image.name);
-      Object.keys(payload).forEach(key => {data.append(key, payload[key])});
       
-      console.log("Person has submitted " , payload);
-      let token = localStorage.getItem(ACCESS_TOKEN_NAME);
-      console.log(token);
-
-      axios.post(API_BASE_URL + '/event/create', { headers: {'auth-token': token} }, data) //payload)
+      axios.post(API_BASE_URL + '/event/create', { headers: { 'content-type': 'multipart/form-data' }}, data) //payload)
 
         .then(function (response) {
           if (response.status === 200) {
@@ -205,23 +226,30 @@ function NewEvent({ props }) {
   };
 
   const handleImageChange = (e) => {
+
     e.preventDefault();
-    let reader = new FileReader();
-    let file = e.target.files[0];
-
-    reader.onloadend = () => {
-        setState(prevState => ({
+    setState(prevState => ({
           ...prevState,
-          ["image"]: file
-        }));
+          ["image"]:  e.target.files[0]
+    }));
 
-        setState(prevState => ({
-          ...prevState,
-          ["imagePreviewUrl"]: reader.result
-        }));
-    }
+    // e.preventDefault();
+    // let reader = new FileReader();
+    // let file = e.target.files[0];
 
-    reader.readAsDataURL(file);
+    // reader.onloadend = () => {
+    //     setState(prevState => ({
+    //       ...prevState,
+    //       ["image"]: file
+    //     }));
+
+    //     setState(prevState => ({
+    //       ...prevState,
+    //       ["imagePreviewUrl"]: reader.result
+    //     }));
+    // }
+
+    // reader.readAsDataURL(file);
   };
 
   
@@ -324,8 +352,8 @@ function NewEvent({ props }) {
               <label className="bw3" htmlFor="FileInput">Image:</label>
               <input type="file"
                 className="fc3"
-                id="imageFileInput"
-                onChange={(e) => handleImageChange(e)} 
+                id="image"
+                onChange={(e) => handleImageChange(e)}
                 /> 
                 <div className="img-preview">
                 {$imagePreview}
