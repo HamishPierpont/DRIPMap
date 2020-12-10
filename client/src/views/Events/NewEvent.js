@@ -76,7 +76,7 @@ function NewEvent({ props }) {
       var imageURL = null;
       
     await Promise.allSettled([
-      Promise.resolve(axios.post(BASE_URL + '/upload', data)),
+      Promise.resolve(axios.post(BASE_URL + 'upload', data)),
     ]).then(axios.spread ((imageResponse)=> {
       console.log(imageResponse);
 
