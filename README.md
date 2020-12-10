@@ -13,7 +13,7 @@ DRIPMaP (which stands for Disaster Relief Identification & Priority Management P
 3) For the ```token_secret``` variable, place any random string
 
 ###### How to create client side config file:
-1) cd to ```client/config``` and open ```config.js```
+1) cd to ```client/src/config/``` and open ```config.js```
 2) For the ```config.gmaps_api_key variable```, place your Google Maps API key
 
 ###### Instructions to run DRIPMaP:
