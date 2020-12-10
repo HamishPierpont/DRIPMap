@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAlert } from 'react-alert'
-import { ACCESS_TOKEN_NAME, API_BASE_URL } from '../../shared/apiConstants';
+import { ACCESS_TOKEN_NAME, API_BASE_URL, BASE_URL } from '../../shared/apiConstants';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import FormData from 'form-data';
@@ -73,15 +73,15 @@ function NewEvent({ props }) {
       console.log(state.image);
       data.append('image', state.image, state.image.name);
 
-      var imageId = null;
+      var imageURL = null;
       
     await Promise.allSettled([
-      Promise.resolve(axios.post(API_BASE_URL + '/image/create', data)),
+      Promise.resolve(axios.post(BASE_URL + '/upload', data)),
     ]).then(axios.spread ((imageResponse)=> {
       console.log(imageResponse);
 
       if (imageResponse.value.status === 200) {
-        imageId =imageResponse.value.data.imageId;
+        imageURL = imageResponse.value.data;
       }
       else{
         alert.show("Error");
@@ -102,7 +102,7 @@ function NewEvent({ props }) {
         "userName":  localStorage.getItem("username"),
         "location": selected,
         "date" : new Date(), 
-        "imageId": imageId
+        "imageURL": imageURL
       }
       
       axios.post(API_BASE_URL + '/event/create', payload, { headers: {'auth-token': token} })

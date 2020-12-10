@@ -12,10 +12,14 @@
 
 # config
 /server/config.js
+/client/src/config/config.js
 
 # production
 /build
 client/build
+
+# images
+server/public/images/*
 
 # misc
 .DS_Store

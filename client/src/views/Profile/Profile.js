@@ -69,7 +69,7 @@ function Profile(props) {
 
   const alert = useAlert();
 
-  useEffect( async () => {
+  useEffect(() => {(async () => {
 
     await Promise.allSettled([
       Promise.resolve(axios.get(API_BASE_URL + '/user/'+ localStorage.getItem('username'), { headers: { 'auth-token': localStorage.getItem(ACCESS_TOKEN_NAME) } })),
@@ -95,7 +95,7 @@ function Profile(props) {
       console.log(error); 
       props.history.push('user/login');
     })
-
+  })();
   }, []);
    
 

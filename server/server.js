@@ -6,7 +6,7 @@ morgan = require('morgan'),
 bodyParser = require('body-parser'),
 authRouter = require('./routes/auth'),
 eventRouter = require('./routes/event'),
-imageRouter = require('./routes/image');
+multer = require('multer');
 const { allowedNodeEnvironmentFlags } = require('process');
 
 mongoose.connect(process.env.DB_URI || require('./config/config').db.uri, {
@@ -37,15 +37,25 @@ app.use('/api/user', authRouter);
 // Router for event CRUD operations
 app.use('/api/event', eventRouter);
 
-// Router for image creation and reading
-app.use('/api/image', imageRouter);
+// Define storage path and filename for images on server
+let storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './public/images/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  }
+});
+  
+// Add this function as middleware to routes that store images
+const upload = multer({storage: storage});
 
-// Serve any static files TODO: separate prod & dev environments
-app.use(express.static(path.join(__dirname, '../../client/build')));
-
-// Handle React routing, return all requests to React app
-app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
+app.use(express.static(path.join(__dirname, 'public')));
+  
+  //Store new image on the server
+app.post('/upload', upload.single('image'), async (req, res) => {
+  let imagePath = req.file.path.replace(/^public\//, '');
+  res.send(imagePath);
 });
 
 // Use env port or default

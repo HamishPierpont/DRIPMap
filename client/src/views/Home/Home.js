@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { ACCESS_TOKEN_NAME, API_BASE_URL } from '../../shared/apiConstants';
+import { ACCESS_TOKEN_NAME, API_BASE_URL, BASE_URL } from '../../shared/apiConstants';
 import { withRouter } from 'react-router-dom';
-import { useAlert } from 'react-alert'
+import { useAlert } from 'react-alert';
+import config from '../../config/config';
 import axios from 'axios';
 
 import {
@@ -53,7 +54,7 @@ function MapContainer(props) {
 
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyCK0OcFEpHwXXXYuXYFlNwk5RBH7TaxbB8",
+    googleMapsApiKey: config.gmaps_api_key, 
     libraries,
   });
 
@@ -81,14 +82,13 @@ function MapContainer(props) {
 
   const onSelectEvent = async (event) => {
 
-    await axios.get(API_BASE_URL + '/image/read', {imageId: event.imageId}, { headers: {
+    await axios.get(BASE_URL + event.imageURL, { headers: {
       'Content-Type': 'application/json',
   }} )
     .then(function (response) {
       console.log(response);
       if (response.status === 200) {
-        console.log(response.data);
-        setImage(response.data.buffer); 
+        setImage(response.config.url); 
       }
       else {
         alert.show("Error retrieving image.");
