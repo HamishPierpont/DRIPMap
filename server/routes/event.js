@@ -7,6 +7,7 @@ const verify = require('./verifyToken');
 router.post('/create', verify, async (req, res) => {
   
   //Validate data first!
+  console.log("User login verified!");
   console.log(req.body);
   const {error} = createEventValidation(req.body); 
   if (error) {

@@ -81,6 +81,7 @@ function NewEvent({ props }) {
       console.log(imageResponse);
 
       if (imageResponse.value.status === 200) {
+        console.log('ImageURL:', imageResponse.value.data);
         imageURL = imageResponse.value.data;
       }
       else{
@@ -95,6 +96,7 @@ function NewEvent({ props }) {
      
 
       let token = localStorage.getItem(ACCESS_TOKEN_NAME);
+      console.log("token:", token);
       const payload = {
         "title": state.title,
         "description": state.description,
@@ -108,6 +110,7 @@ function NewEvent({ props }) {
       axios.post(API_BASE_URL + '/event/create', payload, { headers: {'auth-token': token} })
 
         .then(function (response) {
+          console.log(response);
           if (response.status === 200) {
             setState(prevState => ({
               ...prevState,

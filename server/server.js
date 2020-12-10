@@ -6,6 +6,7 @@ morgan = require('morgan'),
 bodyParser = require('body-parser'),
 authRouter = require('./routes/auth'),
 eventRouter = require('./routes/event'),
+os = require('os',)
 multer = require('multer');
 const { allowedNodeEnvironmentFlags } = require('process');
 
@@ -54,8 +55,18 @@ app.use(express.static(path.join(__dirname, 'public')));
   
   //Store new image on the server
 app.post('/upload', upload.single('image'), async (req, res) => {
-  let imagePath = req.file.path.replace(/^public\//, '');
-  res.send(imagePath);
+  if (os.platform() !== 'win32') { //Not windows
+    let imagePath = req.file.path.replace(/^public\//, '');
+    res.send(imagePath);
+    console.log(imagePath);
+  }
+  else { //Windows, unfortunately
+    console.log("On windows...");
+    let imagePath = req.file.path.replace(/^public\\/, '/');
+    imagePath = imagePath.replace(/\\/g, '/');
+    console.log("imagePath:", imagePath);
+    res.send(imagePath);
+  }
 });
 
 // Use env port or default

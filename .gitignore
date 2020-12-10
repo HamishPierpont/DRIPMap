@@ -20,6 +20,7 @@ client/build
 
 # images
 server/public/images/*.jpg
+server/public/images/*.png
 
 # misc
 .DS_Store
