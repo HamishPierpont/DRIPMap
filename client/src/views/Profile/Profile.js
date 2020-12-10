@@ -112,16 +112,27 @@ function Profile(props) {
   return (
     <div className="App">
       <header className="App-header">
-        Profile Page Content
-            </header>
+      {state.currentUser.name && (
+          <p> Welcome  {state.currentUser.userName} ! </p>)} 
+     </header>
       <div>
-        {state.currentUser.name && (
-          <p> Welcome  {state.currentUser.userName} !
-          First name: {state.currentUser.lastName} ,
-          Last name: {state.currentUser.firstName}, 
-          Email  {state.currentUser.email}
-          </p>)}</div>
+        {state.currentUser.name && 
+        (<div>
+          <p className="App-Text">First name: {state.currentUser.lastName} </p>
+          <br></br>
+          <br></br>
+          <p className="App-Text">Last name: {state.currentUser.firstName}</p>
+          <br></br>
+          <br></br>
+          <p className="App-Text">Email: {state.currentUser.email}</p>
+          <br></br>
+          <br></br>
+
+          </div>)
+          }
+          </div>
       <div>
+      <center>
         {state.currentUserEvents ?
           (state.currentUserEvents.length ?
             (
@@ -163,7 +174,8 @@ function Profile(props) {
             </GoogleMap>
       )
           : (<p>You have not create any events. <li style={{ listStyleType: 'none', marginLeft: 250 }} class="nav-item active"><a class="nav-link" href="/events/new">Create a new event? <span class="sr-only"></span></a></li> </p>))
-          : <p>Error loading events.</p>}
+          : <p className="App-Text">Error loading events.</p>}
+          </center>
        </div>
       <div>
         <button style={{ width: 200, height: 50, marginBottom: 50 }}
