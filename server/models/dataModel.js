@@ -30,7 +30,7 @@ const formDataModel = new mongoose.Schema({
         type: Date,
         required: true
     },
-    imageId: {
+    imageURL: {
         type: String,
         required: true
     }

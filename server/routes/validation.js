@@ -32,17 +32,7 @@ const createEventValidation = (data) => {
     },
     userName: Joi.string().min(1).required(),
     date: Joi.date().iso().required(),
-    imageId: Joi.string().required()
-  });
-
-  return schema.validate(data);
-};
-
-const createImageValidation = (data) => {
-  const schema = Joi.object({
-    size: Joi.number().integer().required(),
-    buffer: Joi.binary().required(),
-    mimeType: Joi.string()
+    imageURL: Joi.string().required()
   });
 
   return schema.validate(data);
@@ -51,4 +41,3 @@ const createImageValidation = (data) => {
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.createEventValidation = createEventValidation;
-module.exports.createImageValidation = createImageValidation;
