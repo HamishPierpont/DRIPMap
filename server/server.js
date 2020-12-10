@@ -7,6 +7,7 @@ bodyParser = require('body-parser'),
 authRouter = require('./routes/auth'),
 eventRouter = require('./routes/event'),
 imageRouter = require('./routes/image');
+const { allowedNodeEnvironmentFlags } = require('process');
 
 mongoose.connect(process.env.DB_URI || require('./config/config').db.uri, {
     useNewUrlParser: true,
@@ -17,6 +18,9 @@ mongoose.set('useFindAndModify', false);
 
 // Initialize app
 const app = express();
+
+// Prevent weird 304 errors
+app.set('etag', false);
 
 // User cors to prevent resources from different origins being blocked
 app.use(cors());
