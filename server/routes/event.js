@@ -1,21 +1,13 @@
 const router = require('express').Router();
-const multer = require('multer');
 const formData = require('../models/dataModel');
 const {createEventValidation} = require('./validation');
 const verify = require('./verifyToken');
 
-// Add this function as middleware to routes that handle images
-const upload = multer();
-
 //Create new event in database if logged in
-router.post('/create', verify, upload.single('image'), async (req, res) => {
+router.post('/create', verify, async (req, res) => {
   
   //Validate data first!
-  console.log(req.body);
-  const {buffer, size, mimeType, ...unused} = req.file;
-  const image = {buffer, size, mimeType};
-  console.log(Object.assign(req.body, image));
-  const {error} = createEventValidation(Object.assign(req.body, image)); 
+  const {error} = createEventValidation(req.body); 
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
@@ -28,7 +20,7 @@ router.post('/create', verify, upload.single('image'), async (req, res) => {
     location: req.body.location,
     date: req.body.date,
     userName: req.body.userName,
-    image: image
+    imageId: req.body.imageId
   });
 
   //Save form in database
@@ -39,7 +31,6 @@ router.post('/create', verify, upload.single('image'), async (req, res) => {
   catch(err) {
     res.status(400).send(err);
   }
-
 });
 
 //Read all events from the database
@@ -51,13 +42,14 @@ router.get('/read', async (req, res) => {
 
 //Read events from database by userName
 router.get('/read/:_userName', verify, async (req, res) => {
-  const events = await formData.find({userName: _userName});
+  console.log(req.params._userName);
+  const events = await formData.find({userName: req.params._userName});
   res.send(events);
 });
 
 //Update events in database owned by same user
-router.post('/update/:_userName/:__id', verify, async (req, res) => {
-  const result = await formData.update({userName: _userName, _id: __id});
+router.post('/update/:_userName/:_id', verify, async (req, res) => {
+  const result = await formData.update({userName: req.params._userName, _id: req.params._id});
   if (result.n > 0 && result.n == result.nModified) {
     res.send(result);
   }
@@ -67,8 +59,8 @@ router.post('/update/:_userName/:__id', verify, async (req, res) => {
 });
 
 //Delete event from database owned by same user
-router.post('/delete/:_userName/:_id', verify, upload.single('image'), async (req, res) => {
-  const result = await formData.deleteOne({userName: _userName, _id: __id});
+router.post('/delete/:_userName/:_id', verify, async (req, res) => {
+  const result = await formData.deleteOne({userName: req.params._userName, _id: req.params._id});
   res.send(result);
 });
 
