@@ -71,7 +71,7 @@ function NewEvent({ props }) {
       
       let data = new FormData();
       console.log(state.image);
-      data.append('file', state.image, state.image.name);
+      data.append('image', state.image, state.image.name);
 
       const imageId = null;
       //Object.keys(payload).forEach(key => {data.append(key, payload[key])});
@@ -109,7 +109,7 @@ function NewEvent({ props }) {
       }
 
       
-      axios.post(API_BASE_URL + '/event/create', { headers: { 'content-type': 'multipart/form-data' }}, data) //payload)
+      axios.post(API_BASE_URL + '/event/create', { headers: {'auth-token': token} }, data) //payload)
 
         .then(function (response) {
           if (response.status === 200) {

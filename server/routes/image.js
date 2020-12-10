@@ -3,12 +3,15 @@ const multer = require('multer');
 const image = require('../models/image');
 const {createImageValidation} = require('./validation');
 const verify = require('./verifyToken');
+var fs = require('fs');
 
 // Add this function as middleware to routes that handle images
 const upload = multer();
 
 //Create new image in database if logged in
 router.post('/create', upload.single('image'), async (req, res) => {
+
+  console.log(req);
   
   //Validate data first!
   let {buffer, size, mimeType, ...unused} = req.file;
