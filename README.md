@@ -7,13 +7,15 @@ DRIPMaP (which stands for Disaster Relief Identification & Priority Management P
 3) cd to server folder and run ```npm install``` to download all necessary dependencies
 4) cd to client folder and run ```npm install``` to download all necessary dependencies
 
-###### How to create config file:
+###### How to create server side config file:
 1) cd to server/config/ and open config.js
 2) Place a valid MongoDB uri into the uri variable line
 3) For the token_secret variable, place any random string
-4) For the config.gmaps_api_key variable, place your Google Maps API key
+
+###### How to create client side config file:
+1) cd to client/config and open config.js
+2) For the config.gmaps_api_key variable, place your Google Maps API key
 
 ###### Instructions to run DRIPMaP:
 1) cd to server folder
 2) run ```npm run dev```
-
