@@ -73,10 +73,7 @@ function NewEvent({ props }) {
       console.log(state.image);
       data.append('image', state.image, state.image.name);
 
-      const imageId = null;
-      //Object.keys(payload).forEach(key => {data.append(key, payload[key])});
-
-      console.log(data);
+      var imageId = null;
       
     await Promise.allSettled([
       Promise.resolve(axios.post(API_BASE_URL + '/image/create', data)),
@@ -104,12 +101,12 @@ function NewEvent({ props }) {
         "typeOfDisaster": state.typeOfDisaster, 
         "userName":  localStorage.getItem("username"),
         "location": selected,
-        "date" : new Date().toISOString(), 
+        "date" : new Date(), 
         "imageId": imageId
       }
-
+      console.log(payload);
       
-      axios.post(API_BASE_URL + '/event/create', { headers: {'auth-token': token} }, data) //payload)
+      axios.post(API_BASE_URL + '/event/create', data, { headers: {'auth-token': token} }) //payload)
 
         .then(function (response) {
           if (response.status === 200) {
