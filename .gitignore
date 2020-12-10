@@ -12,6 +12,7 @@
 
 # config
 /server/config.js
+/client/src/config.js
 
 # production
 /build

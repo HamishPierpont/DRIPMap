@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { ACCESS_TOKEN_NAME, API_BASE_URL } from '../../shared/apiConstants';
 import { withRouter } from 'react-router-dom';
-import { useAlert } from 'react-alert'
+import { useAlert } from 'react-alert';
+import config from '../../config';
 import axios from 'axios';
 
 import {
@@ -53,7 +54,7 @@ function MapContainer(props) {
 
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyCK0OcFEpHwXXXYuXYFlNwk5RBH7TaxbB8",
+    googleMapsApiKey: config.gmaps_api_key, 
     libraries,
   });
 
