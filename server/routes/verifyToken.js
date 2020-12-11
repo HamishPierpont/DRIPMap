@@ -11,7 +11,7 @@ module.exports = function(req, res, next) {
     }
 
     try {
-        const verified = jwt.verify(token, config.token_secret);
+        const verified = jwt.verify(token, process.env.TOKEN_SECRET || config.token_secret);
         req.user = verified;
         next();
     }
