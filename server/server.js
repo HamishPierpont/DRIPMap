@@ -54,7 +54,7 @@ const upload = multer({storage: storage});
 //app.use(express.static(path.join(__dirname, 'build')));
 
 if (process.NODE_ENV === 'production') {
-  app.use(express.static('../client/build'));
+  app.use(express.static(path.join(__dirname, '../client/build')));
 }
   //Store new image on the server
 app.post('/upload', upload.single('image'), async (req, res) => {
@@ -72,8 +72,8 @@ app.post('/upload', upload.single('image'), async (req, res) => {
   }
 });
 
-app.get('/', (request, response) => {
-	response.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
+app.get('*', (request, response) => {
+	response.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
 // Use env port or default
