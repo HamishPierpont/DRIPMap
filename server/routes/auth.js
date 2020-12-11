@@ -3,7 +3,7 @@ const bcryptjs = require('bcryptjs');
 const User = require('../models/User');
 const {registerValidation, loginValidation} = require('./validation');
 const jwt = require('jsonwebtoken');
-const config = require('../config/config');
+//const config = require('../config/config');
 const tokenVerification = require("./verifyToken");
 
 //Register
@@ -72,7 +72,7 @@ router.post('/login', async (req, res) => {
   }
 
   //Create and assign a json web token to keep user logged in
-  const token = jwt.sign({user: user._id}, process.env.TOKEN_SECRET || config.token_secret);
+  const token = jwt.sign({user: user._id}, process.env.TOKEN_SECRET /*|| config.token_secret*/);
   //res.header('auth-token', token).send(token);
 
   res.header('auth-token', token);

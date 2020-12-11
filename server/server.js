@@ -10,7 +10,7 @@ os = require('os',)
 multer = require('multer');
 const { allowedNodeEnvironmentFlags } = require('process');
 
-mongoose.connect(process.env.DB_URI || require('./config/config').db.uri, {
+mongoose.connect(process.env.DB_URI /*|| require('./config/config').db.uri*/, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

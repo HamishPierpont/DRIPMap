@@ -54,7 +54,7 @@ function MapContainer(props) {
 
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.GMAPS_API_KEY || config.gmaps_api_key, 
+    googleMapsApiKey: process.env.GMAPS_API_KEY /*|| config.gmaps_api_key*/, 
     libraries,
   });
 
