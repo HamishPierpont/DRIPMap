@@ -16,7 +16,8 @@
     "react-alert-template-basic": "^1.0.0",
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.14.0",
-    "react-loadingg": "^1.7.2",
+    "react-loading": "^1.7.2",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.4",
     "react-twitter-embed": "^3.0.3",
     "reactstrap": "^8.7.1",
@@ -32,8 +33,8 @@
     "extends": "react-app"
   },
   "devDependencies": {
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "react-router-dom": "^5.2.0"
+    "eslint-plugin-react-hooks": "^4.2.0"
+
   },
   "proxy": "http://localhost:5000",
   "browserslist": {
