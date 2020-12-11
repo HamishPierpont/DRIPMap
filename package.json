@@ -1,5 +1,5 @@
 {
-  "homepage": ".",
+  "homepage": "https://dripmap.herokuapp.com/",
   "private": true,
   "workspaces": [
     "client",
