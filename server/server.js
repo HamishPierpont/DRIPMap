@@ -51,12 +51,11 @@ let storage = multer.diskStorage({
 // Add this function as middleware to routes that store images
 const upload = multer({storage: storage});
 
-app.use(express.static(path.join(__dirname, 'build')));
-/*
+//app.use(express.static(path.join(__dirname, 'build')));
+
 if (process.NODE_ENV === 'production') {
   app.use(express.static('../client/build'));
 }
-*/
   //Store new image on the server
 app.post('/upload', upload.single('image'), async (req, res) => {
   if (os.platform() !== 'win32') { //Not windows
