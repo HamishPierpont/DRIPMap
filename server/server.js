@@ -73,9 +73,13 @@ app.post('/upload', upload.single('image'), async (req, res) => {
   }
 });
 
+express.static(path_join(__dirname, '../client/build'));
+
+/*
 app.get('*', (request, response) => {
 	response.sendFile(path.join(__dirname, '../client/build'));
 });
+*/
 
 // Use env port or default
 const port = process.env.PORT || 5000;
