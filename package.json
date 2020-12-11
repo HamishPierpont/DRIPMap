@@ -16,6 +16,6 @@
   },
   "scripts": {
     "start": "cd server && npm run dev",
-    "heroku-postbuild": "npm cache clean && NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
   }
 }
