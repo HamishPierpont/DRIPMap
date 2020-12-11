@@ -15,7 +15,11 @@
     "react-twitter-embed": "^3.0.3"
   },
   "scripts": {
-    "start": "cd server && npm run dev",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+    "start": "cd server && npm start",
+    "build": "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "install-server": "cd server && npm install",
+    "install-all": "npm install && npm run install-client && npm run install-server",
+    "heroku-postbuild": "npm run install-all && npm run build"
   }
 }

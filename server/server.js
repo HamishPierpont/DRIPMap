@@ -52,6 +52,10 @@ let storage = multer.diskStorage({
 const upload = multer({storage: storage});
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+if (process.NODE_ENV === 'production') {
+  app.use(express.static('../client/build'));
+}
   
   //Store new image on the server
 app.post('/upload', upload.single('image'), async (req, res) => {
