@@ -53,7 +53,7 @@ const upload = multer({storage: storage});
 
 //app.use(express.static(path.join(__dirname, 'build')));
 
-if (process.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
   //Store new image on the server
