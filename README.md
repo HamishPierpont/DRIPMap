@@ -17,5 +17,6 @@ DRIPMaP (which stands for Disaster Relief Identification & Priority Management P
 2) For the ```config.gmaps_api_key variable```, place your Google Maps API key
 
 ###### Instructions to run DRIPMaP:
+0) We had to comment out a few config imports/invocations to get deployment to work. If you want to run this locally, you'll need to `grep -R "config" --exclude-dir=node_modules` from the root directory to find those locations and un-comment them. We would go back and change this, but we don't want to run afoul of late submission penalties. 
 1) cd to ```server folder```
 2) run ```npm run dev```
