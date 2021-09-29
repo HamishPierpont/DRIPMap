@@ -10,7 +10,7 @@
     "date-fns": "^2.16.1",
     "form-data": "^3.0.0",
     "google-maps-react": "^2.0.6",
-    "i": "^0.3.6",
+    "i": "^0.3.7",
     "react": "^16.14.0",
     "react-alert": "^7.0.2",
     "react-alert-template-basic": "^1.0.0",
